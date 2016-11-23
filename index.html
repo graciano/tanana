@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tananã</title>
+  </head>
+  <body>
+    <h1>Olá, este é o protótipo do Tananã!</h1>
+    <button id="abrir-exemplo" type="button">Abrir exemplo</button>
+    <button id="button-biblioteca" type="button">Selecionar Biblioteca</button>
+
+    <ul id="biblioteca-view"></ul>
+
+    <hr>
+    <h2>Coisas do electron:</h2>
+    <p>
+      We are using Node.js <script>document.write(process.versions.node)</script>,
+      Chromium <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+    </p>
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>

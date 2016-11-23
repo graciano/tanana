@@ -1,0 +1,22 @@
+{
+  "name": "tanana",
+  "version": "0.0.1",
+  "description": "Software para aprendizado de partituras musicais.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/graciano/tanana",
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Matheus Graciano <graciano.dev@gmail.com>",
+  "license": "BSD-4-Clause",
+  "devDependencies": {
+    "electron": "^1.4.1"
+  },
+  "dependencies": {
+    "midifile": "^1.0.4",
+    "recursive-readdir": "^2.1.0"
+  }
+}
