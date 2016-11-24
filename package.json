@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "midifile": "^1.0.4",
-    "recursive-readdir": "^2.1.0"
+    "recursive-readdir": "^2.1.0",
+    "vexflow": "^1.2.83"
   }
 }

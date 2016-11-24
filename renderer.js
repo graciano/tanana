@@ -8,6 +8,7 @@ var MIDIFile = require('midifile', 'src'),
 // var MIDIFile = require('../MIDIFile/dist/MIDIFile.js'),
 //     MIDIFileHeader = require('../MIDIFile/dist/MIDIFile.js', 'MIDIFileHeader'),
     MIDIEvents = require('midievents'),
+    vexflow = require('vexflow'),
     fs = require('fs'),
     readdir = require('recursive-readdir')
 const {dialog} = require('electron').remote
@@ -43,6 +44,11 @@ buttonBiblioteca.addEventListener('click', function(){
     showMusic(libPath)
 })
 
+
+var midiNoteToString = function(note){
+    console.log(note)
+}
+
 buttonExemplo.addEventListener('click', function(){
 
     /*
@@ -62,7 +68,8 @@ buttonExemplo.addEventListener('click', function(){
     //from midiFile readme:
 
     // Your variable with a ArrayBuffer instance containing your MIDI file
-    var musicFile = fs.readFileSync('exemplos/garota-de-ipanema.mid')
+    var musicFile = fs.readFileSync('exemplos/twinkle_twinkle.mid')
+    // var musicFile = fs.readFileSync('exemplos/garota-de-ipanema.mid')
     var midiBuffer = toArrayBuffer(musicFile)
 
     // Creating the MIDIFile instance
@@ -70,17 +77,17 @@ buttonExemplo.addEventListener('click', function(){
 
     // Reading headers
     console.log(midiFile.header.getFormat()) // 0, 1 or 2
-    console.log(midiFile.header.getTracksCount()) // n
+    console.log("tracks "+midiFile.header.getTracksCount()) // n
 
     // Time division
     var time;
     if(midiFile.header.getTimeDivision() === MIDIFileHeader.TICKS_PER_BEAT) {
         time = midiFile.header.getSMPTEFrames()
+        // midiFile.header.getTicksPerFrame() //don't know what is this
     } else {
         time = midiFile.header.getTicksPerBeat()
-        // midiFile.header.getTicksPerFrame() don't know what is this
     }
-    console.log(time);
+    console.log("time "+time)
 
     // MIDI events retriever
     var events = midiFile.getMidiEvents()
@@ -98,19 +105,96 @@ buttonExemplo.addEventListener('click', function(){
 
     // Reading whole track events and filtering them yourself
     var events = midiFile.getTrackEvents(0)
+    // console.log(events)
 
-    events.forEach(console.log.bind(console))
+    // events.forEach(console.log.bind(console))
 
     // Or for a single track
-    var trackEventsChunk = midiFile.tracks[0].getTrackContent()
+    var trackEventsChunk = midiFile.tracks[1].getTrackContent()
+    // console.log(trackEventsChunk)
     var events = MIDIEvents.createParser(trackEventsChunk)
 
+    function iterateParamsMidi(event, callback){
+        var property, count = 0, go=true
+        do{
+            count++
+            property ='param'+count
+            if(go = event.hasOwnProperty(property))
+                callback(event[property])
+        }while(go)
+    }
+
+    var midiNotes = []
+    var midiNotesPlaying = []
     var event
     while(event = events.next()) {
         // Printing meta events containing text only
         if(event.type === MIDIEvents.EVENT_META && event.text) {
             console.log('Text meta: '+event.text)
         }
+        if(MIDIEvents.EVENT_MIDI_NOTE_ON===event.subtype){
+            iterateParamsMidi(event, function(param){
+                midiNotesPlaying.push(param)
+            })
+        }
+        else if(MIDIEvents.EVENT_MIDI_NOTE_OFF===event.subtype){
+            iterateParamsMidi(event, function(param){
+                var i = midiNotesPlaying.indexOf(param)
+                if(i==-1) console.log("deu ruim")
+                else{
+                    console.log('ok')
+                    // console.log(event.param2)
+                    // console.log(midiNotesPlaying)
+                    midiNotes.push(midiNotesPlaying.splice(i, 1)[0])
+                }
+            })
+        }
+        //todo handle other midi events
+
     }
+    console.log("notes playing")
+    console.log(midiNotesPlaying)
+    console.log("notes")
+    console.log(midiNotes)
+
+
+    function StringNote(){
+        this.STRING_NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+    }
+
+    StringNote.prototype.getStringFromMidiNumber = function(number){
+        var noteWithoutOctave = Math.floor(number % 12)
+        var stringResult = this.STRING_NOTES[noteWithoutOctave]
+        var octave = Math.floor(number / 12)
+        stringResult+=octave
+        //TODO make flats appear too
+        return stringResult
+    }
+
+
+    var vf = new vexflow.Flow.Factory({
+      renderer: {selector: 'main-score', width: 500, height: 200}
+    })
+
+    var score = vf.EasyScore()
+    var system = vf.System()
+
+    var vexNotesString = ''
+
+    var sn = new StringNote()
+    for (var i =0; i<7; i++) {
+        vexNotesString+= sn.getStringFromMidiNumber(midiNotes[i]) +', '
+    }
+    vexNotesString+= sn.getStringFromMidiNumber(midiNotes[i])
+    console.log(vexNotesString)
+
+    system.addStave({
+      voices: [
+        score.voice(score.notes(vexNotesString, {stem: 'up'})),
+        // score.voice(score.notes('C#4/h, C#4', {stem: 'down'}))
+      ]
+    }).addClef('treble').addTimeSignature('4/4')
+
+    vf.draw()
 })
 
