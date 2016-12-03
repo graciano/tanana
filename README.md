@@ -7,11 +7,11 @@ Software to learn/practice music scores. Now it's a college project, but this ca
 
 #### Project motivation
 
-Most of the musicians I know are kind of "*semi iletrate*" in music scores. Myself included. We can read and play music, but not in an efficient way. This project was made so people like that can practice it. Most of music software today is either too professional for that, or the UX is just painful. I think the exception would be *[flat.io](flat.io)*, but their goal is not to be an educational software like **Tananã**.
+Most of the musicians I know are kind of "*semi iletrate*" in music scores. Myself included. We can read and play music, but not in an efficient way. This project was made so people like that can practice it. Most of music software today is either too professional for that, or the UX is just painful. I think the exception would be *[flat.io](http://flat.io)*, but their goal is not to be an educational software like **Tananã**.
 
 ### Project status and milestones
 
-Currently it doesn't work quite well. It just reads a MIDI file and tries to make a music score (like a bazillion other projects already do). In the future this will be useful to practice music score reading. [Github milestones](milestones) are keeping track of what will be implemented.
+Currently it doesn't work quite well. It just reads a MIDI file and tries to make a music score (like a bazillion other projects already do). In the future this will be useful to practice music score reading. [Github milestones](https://github.com/graciano/tanana/milestones) are keeping track of what will be implemented.
 Join the [developer chat in telegram](https://telegram.me/joinchat/AX-8VUBEo7Yy-36ovYfFEQ).
 
 ### This project is using:
