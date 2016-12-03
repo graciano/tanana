@@ -5,22 +5,21 @@
 
 var MIDIFile = require('midifile', 'src'),
     MIDIFileHeader = require('midifile', 'src', 'MIDIFileHeader'),
-// var MIDIFile = require('../MIDIFile/dist/MIDIFile.js'),
-//     MIDIFileHeader = require('../MIDIFile/dist/MIDIFile.js', 'MIDIFileHeader'),
     MIDIEvents = require('midievents'),
     vexflow = require('vexflow'),
     fs = require('fs'),
     readdir = require('recursive-readdir')
 const {dialog} = require('electron').remote
 
-var buttonExemplo = document.getElementById('abrir-exemplo')
-var buttonBiblioteca = document.getElementById('button-biblioteca')
+var buttonExample = document.getElementById('open-example')
+var buttonlibrary = document.getElementById('button-library')
 
 const MIDI_FORMATS = ['mid', 'midi']
 
+//todo modularize this spaguetti code
 
 var showMusic = function(path){
-    var ulBilioteca = document.getElementById('biblioteca-view')
+    var ulLibrary = document.getElementById('library-view')
     console.log(path)
     readdir(path, [], function (err, files) {
       for (var i = files.length - 1; i >= 0; i--) {
@@ -33,13 +32,13 @@ var showMusic = function(path){
             button.classList.add('file')
             // button.addEventListener('click', openFile)
             li.appendChild(button)
-            ulBilioteca.appendChild(li)
+            ulLibrary.appendChild(li)
           }
       }
     })
 }
 
-buttonBiblioteca.addEventListener('click', function(){
+buttonlibrary.addEventListener('click', function(){
     libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
     showMusic(libPath)
 })
@@ -49,7 +48,7 @@ var midiNoteToString = function(note){
     console.log(note)
 }
 
-buttonExemplo.addEventListener('click', function(){
+buttonExample.addEventListener('click', function(){
 
     /*
     * binary buffer to ArrayBuffer, from stackoverflow:
@@ -77,7 +76,7 @@ buttonExemplo.addEventListener('click', function(){
 
     // Reading headers
     console.log(midiFile.header.getFormat()) // 0, 1 or 2
-    console.log("tracks "+midiFile.header.getTracksCount()) // n
+    console.log("tracks "+ midiFile.header.getTracksCount()) // n
 
     // Time division
     var time;
@@ -140,7 +139,10 @@ buttonExemplo.addEventListener('click', function(){
         else if(MIDIEvents.EVENT_MIDI_NOTE_OFF===event.subtype){
             iterateParamsMidi(event, function(param){
                 var i = midiNotesPlaying.indexOf(param)
-                if(i==-1) console.log("deu ruim")
+                if(i==-1){
+                    console.log("deu ruim")
+                    console.log(param)
+                }
                 else{
                     console.log('ok')
                     // console.log(event.param2)
