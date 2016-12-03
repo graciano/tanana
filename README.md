@@ -1,7 +1,7 @@
 Tananã
 ======
 
-Software to learn/practice music scores. Now it's a college project, but this can be really bigger.
+Software to learn/practice music scores. Now it's a college project, but this can be bigger.
 
  - *by Matheus Graciano <graciano.dev@gmail.com>*
 
@@ -19,6 +19,7 @@ Join the [developer chat in telegram](https://telegram.me/joinchat/AX-8VUBEo7Yy-
  - [yarn](https://code.facebook.com/posts/1840075619545360) (*if you know your npm, this will be easy*)
  - [electron](http://electron.atom.io)
  - [MIDIFile](https://github.com/nfroidure/MIDIFile)
+ - [VexFlow](https://github.com/0xfe/vexflow) *to create an svg music score*
 
 ### License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)
