@@ -14,7 +14,7 @@ const {dialog} = require('electron').remote
 var buttonExample = document.getElementById('open-example')
 var buttonlibrary = document.getElementById('button-library')
 
-const MIDI_FORMATS = ['mid', 'midi']
+const MIDI_FORMATS = ['mid', 'midi', 'MIDI', 'MID']
 
 //todo modularize this spaguetti code
 
@@ -131,46 +131,55 @@ buttonExample.addEventListener('click', function(){
         if(event.type === MIDIEvents.EVENT_META && event.text) {
             console.log('Text meta: '+event.text)
         }
+
         if(MIDIEvents.EVENT_MIDI_NOTE_ON===event.subtype){
             iterateParamsMidi(event, function(param){
+                //only add note if it's still not playing
                 midiNotesPlaying.push(param)
+                //if the note is already playing, remove the previous one
+                var i = midiNotesPlaying.indexOf(param)
+                if(i!=-1)
+                    midiNotes.push(midiNotesPlaying.splice(i, 1)[0])
             })
         }
         else if(MIDIEvents.EVENT_MIDI_NOTE_OFF===event.subtype){
             iterateParamsMidi(event, function(param){
                 var i = midiNotesPlaying.indexOf(param)
                 if(i==-1){
-                    console.log("deu ruim")
-                    console.log(param)
+                    //console.log(param)
+                    //seems to me that when it sends a note_off signal to a 
+                    //single note, the default is to use the second byte
+                    //with the value 127, or the note G in the 10º octave
                 }
                 else{
-                    console.log('ok')
-                    // console.log(event.param2)
-                    // console.log(midiNotesPlaying)
                     midiNotes.push(midiNotesPlaying.splice(i, 1)[0])
                 }
+            })
+        }
+        else if(event.subtype===MIDIEvents.EVENT_MIDI_CONTROLLER){
+            iterateParamsMidi(event, function(param){
+                console.log('controller '+param)
             })
         }
         //todo handle other midi events
 
     }
-    console.log("notes playing")
+    console.log("notes playing "+midiNotesPlaying.length)
     console.log(midiNotesPlaying)
-    console.log("notes")
+    console.log("notes "+midiNotes.length)
     console.log(midiNotes)
 
 
     function StringNote(){
-        this.STRING_NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        this.STRING_NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F',
+                            'F#', 'G', 'G#', 'A', 'A#', 'B']
     }
 
     StringNote.prototype.getStringFromMidiNumber = function(number){
         var noteWithoutOctave = Math.floor(number % 12)
-        var stringResult = this.STRING_NOTES[noteWithoutOctave]
         var octave = Math.floor(number / 12)
-        stringResult+=octave
         //TODO make flats appear too
-        return stringResult
+        return this.STRING_NOTES[noteWithoutOctave] + octave
     }
 
 
