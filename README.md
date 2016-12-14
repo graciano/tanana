@@ -11,14 +11,13 @@ Most of the musicians I know are kind of "*semi iletrate*" in music scores. Myse
 
 ### Project status and milestones
 
-Currently it doesn't work quite well. It just reads a MIDI file and tries to make a music score (like a bazillion other projects already do). In the future this will be useful to practice music score reading. [Github milestones](https://github.com/graciano/tanana/milestones) are keeping track of what will be implemented.
+Currently it doesn't work quite well. It just reads a [Music XML](http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#Tutorial.htm%3FTocPath%3DMusicXML%25203.0%2520Tutorial%7C_____0) file and tries to make a music score (like a bazillion other projects already do). In the future this will be useful to practice music score reading. [Github milestones](https://github.com/graciano/tanana/milestones) are keeping track of what will be implemented.
 Join the [developer chat in telegram](https://telegram.me/joinchat/AX-8VUBEo7Yy-36ovYfFEQ).
 
 ### This project is using:
 
  - [yarn](https://code.facebook.com/posts/1840075619545360) (*if you know your npm, this will be easy*)
  - [electron](http://electron.atom.io)
- - [MIDIFile](https://github.com/nfroidure/MIDIFile)
  - [VexFlow](https://github.com/0xfe/vexflow) *to create an svg music score*
 
 ### License

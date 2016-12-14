@@ -4,7 +4,7 @@
   "description": "Software para aprendizado de partituras musicais.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "/usr/bin/electron ."
   },
   "repository": "https://github.com/graciano/tanana",
   "keywords": [
@@ -16,7 +16,6 @@
     "electron": "^1.4.1"
   },
   "dependencies": {
-    "midifile": "^1.0.4",
     "recursive-readdir": "^2.1.0",
     "vexflow": "^1.2.83"
   }
