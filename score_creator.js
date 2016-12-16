@@ -6,8 +6,6 @@ module.exports = function (musicjson, selector, options) {
         options = {}
     var barWidth = options.hasOwnProperty("bar-width")? 
                    parseInt(options["bar-width"]) : 200
-    var firstBarWidth = options.hasOwnProperty("first-bar-width")?
-                   parseInt(options["first-bar-width"]) : 300
     var lineHeight = options.hasOwnProperty("line-height")?
                    parseInt(options["line-height"]) : 70
     var spaceBetweenStaves = options.hasOwnProperty("space-between-staves")?
@@ -38,7 +36,7 @@ module.exports = function (musicjson, selector, options) {
             renderer: {
                 selector: score_elem,
                 height: 900,
-                width: firstBarWidth + (barsPerLine * barWidth) + 20,
+                width: (barsPerLine * barWidth) + spaceBetweenStaves + 5,
             }
         })
     var score = vf.EasyScore()
@@ -48,17 +46,17 @@ module.exports = function (musicjson, selector, options) {
     * makeSystem like this example:
     * https://github.com/0xfe/vexflow/blob/master/tests/bach_tests.js#L28
     */
-    var x = 10, y = 0;
+    var x = spaceBetweenStaves, y = spaceBetweenStaves;
     function makeSystem(width, breakLine) {
-        if(breakLine)
-            y += lineHeight
         var system = vf.System({
             x: x,
             y: y,
             width: width,
             spaceBetweenStaves: spaceBetweenStaves,
         })
-        if(breakLine) x = 10
+        if(breakLine)
+            y += lineHeight
+        if(breakLine) x = spaceBetweenStaves
         else x += width
         return system
     }
@@ -67,7 +65,7 @@ module.exports = function (musicjson, selector, options) {
     //todo encapsulate this in a function in musicutil.js
     // or whatever
     
-    var system = makeSystem(firstBarWidth)
+    var system = makeSystem(barWidth)
     // todo calculate size by numbers of notes in measure
 
     //creating first bar with signature etc
@@ -85,9 +83,9 @@ module.exports = function (musicjson, selector, options) {
     var contBars = 1
     for (var i = 1; i < bars.length; i++) {
         var bar = bars[i]
+        system = makeSystem(barWidth, contBars === (barsPerLine - 1))
         contBars++
         contBars %= barsPerLine
-        system = makeSystem(barWidth, contBars === 0)
         system.addStave({
                 voices: musicutil.barEasyScoreVoices(bar,
                                                      score, timeObj, divisions)
