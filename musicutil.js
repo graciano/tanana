@@ -25,11 +25,6 @@ MusicUtil.prototype.timeSignature = function(timeObj) {
             +"/"+timeObj["beat-type"][0]
 }
 
-MusicUtil.prototype.convertTypeDuration = function(type) {
-    if(type.toLowerCase()==="quarter")
-        return 4
-};
-
 MusicUtil.prototype.noteString = function(note, timeObj, divisions) {
     var duration_xml = parseInt(note["duration"][0])
     var beats = parseInt(timeObj["beats"][0])
@@ -49,10 +44,9 @@ MusicUtil.prototype.noteString = function(note, timeObj, divisions) {
     else
         return new Error("note has no rest or pitch")
     
-    noteString += "/"
+    noteString += "/"+duration
     if(note.hasOwnProperty("rest"))
-        noteString+="r"
-    noteString += duration
+        noteString+="/r"
     return  noteString
 }
 
@@ -84,7 +78,6 @@ MusicUtil.prototype.barEasyScoreVoices = function(bar, score, timeObj, divisions
     var voices = []
     for(var voice_id in voices_xml){
         var notes_array = voices_xml[voice_id]
-        console.log(notes_array.join(", "))
         voices.push(score.voice(score.notes(notes_array.join())))
     }
     return voices

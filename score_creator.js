@@ -1,13 +1,27 @@
 var vexflow = require('vexflow'),
     musicutil = require('./musicutil.js')
 
-module.exports = function (musicjson) {
-    var main_score_elem = document.querySelector("#main-score")
+module.exports = function (musicjson, selector, options) {
+    if(typeof options !== "object")
+        options = {}
+    var barWidth = options.hasOwnProperty("bar-width")? 
+                   parseInt(options["bar-width"]) : 200
+    var firstBarWidth = options.hasOwnProperty("first-bar-width")?
+                   parseInt(options["first-bar-width"]) : 300
+    var lineHeight = options.hasOwnProperty("line-height")?
+                   parseInt(options["line-height"]) : 70
+    var spaceBetweenStaves = options.hasOwnProperty("space-between-staves")?
+                   parseInt(options["space-between-staves"]) : 10
+    //todo make this responsive
+    var barsPerLine = options.hasOwnProperty("bars-per-line")?
+                   parseInt(options["bars-per-line"]) : 3
+
+    var score_elem = document.querySelector(selector)
     console.log(musicjson)
     
-    //clean main_score_elem
-    while(main_score_elem.firstChild)
-        main_score_elem.removeChild(main_score_elem.firstChild)
+    //clean score_elem
+    while(score_elem.firstChild)
+        score_elem.removeChild(score_elem.firstChild)
     
     var bars = musicjson["score-partwise"]["part"][0]["measure"]
     var first_bar = bars[0]
@@ -21,7 +35,11 @@ module.exports = function (musicjson) {
 
     //instantiating vexflow stuff
     var vf = new vexflow.Flow.Factory({
-            renderer: {selector: main_score_elem}
+            renderer: {
+                selector: score_elem,
+                height: 900,
+                width: firstBarWidth + (barsPerLine * barWidth) + 20,
+            }
         })
     var score = vf.EasyScore()
     score.set({time: timeSignature})
@@ -30,15 +48,18 @@ module.exports = function (musicjson) {
     * makeSystem like this example:
     * https://github.com/0xfe/vexflow/blob/master/tests/bach_tests.js#L28
     */
-    var x = 0, y = 0;
-    function makeSystem(width) {
+    var x = 10, y = 0;
+    function makeSystem(width, breakLine) {
+        if(breakLine)
+            y += lineHeight
         var system = vf.System({
             x: x,
             y: y,
             width: width,
-            spaceBetweenStaves: 10
+            spaceBetweenStaves: spaceBetweenStaves,
         })
-        x += width
+        if(breakLine) x = 10
+        else x += width
         return system
     }
 
@@ -46,8 +67,10 @@ module.exports = function (musicjson) {
     //todo encapsulate this in a function in musicutil.js
     // or whatever
     
-    var system = makeSystem(220)
+    var system = makeSystem(firstBarWidth)
     // todo calculate size by numbers of notes in measure
+
+    //creating first bar with signature etc
     var voices = musicutil.barEasyScoreVoices(first_bar,
                                               score, timeObj, divisions)
 
@@ -57,9 +80,14 @@ module.exports = function (musicjson) {
         .addClef('treble') // todo support bass clefs
         .addTimeSignature(timeSignature)
         .addKeySignature(keySignature)
-    for (var i = 1; i < 4; i++) {
+
+    //creating other bars
+    var contBars = 1
+    for (var i = 1; i < bars.length; i++) {
         var bar = bars[i]
-        system = makeSystem(180)
+        contBars++
+        contBars %= barsPerLine
+        system = makeSystem(barWidth, contBars === 0)
         system.addStave({
                 voices: musicutil.barEasyScoreVoices(bar,
                                                      score, timeObj, divisions)

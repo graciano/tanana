@@ -42,9 +42,9 @@ buttonlibrary.addEventListener('click', function(){
 
 
 buttonExample.addEventListener('click', function(){
-    var musicFile = fs.readFileSync('exemplos/teste.xml', 'utf-8')
+    var musicFile = fs.readFileSync('examples/teste.xml', 'utf-8')
     xmltojson.parseString(musicFile, function(err, musicjson){
-        score_creator(musicjson)
+        score_creator(musicjson, "#main-score")
     })
 })
 
