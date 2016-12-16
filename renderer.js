@@ -3,8 +3,10 @@
 // All of the Node.js APIs are available in this process.
 
 var vexflow = require('vexflow'),
+    xmltojson = require('xml2js').Parser(),
     fs = require('fs'),
-    readdir = require('recursive-readdir')
+    readdir = require('recursive-readdir'),
+    score_creator = require('./score_creator.js')
 const {dialog} = require('electron').remote
 
 var buttonExample = document.getElementById('open-example')
@@ -16,7 +18,6 @@ const MUSIC_XML_FORMATS = ['xml', 'XML']
 
 var showMusic = function(path){
     var ulLibrary = document.getElementById('library-view')
-    console.log(path)
     readdir(path, [], function (err, files) {
       for (var i = files.length - 1; i >= 0; i--) {
           var file = files[i]
@@ -41,33 +42,9 @@ buttonlibrary.addEventListener('click', function(){
 
 
 buttonExample.addEventListener('click', function(){
-
-
-    function StringNote(){
-        this.STRING_NOTES = ['C', 'C#', 'D', 'D#', 'E', 'F',
-                            'F#', 'G', 'G#', 'A', 'A#', 'B']
-    }
-
-    StringNote.prototype.getStringFromMidiNumber = function(number){
-        var noteWithoutOctave = Math.floor(number % 12)
-        var octave = Math.floor(number / 12)
-        //TODO make flats appear too
-        return this.STRING_NOTES[noteWithoutOctave] + octave
-    }
-
-    var vf = new vexflow.Flow.Factory({
-      renderer: {selector: 'main-score', width: 500, height: 200}
+    var musicFile = fs.readFileSync('exemplos/teste.xml', 'utf-8')
+    xmltojson.parseString(musicFile, function(err, musicjson){
+        score_creator(musicjson)
     })
-
-    var score = vf.EasyScore()
-    var system = vf.System()
-
-    system.addStave({
-      voices: [
-        score.voice(score.notes('C#4/h, C#4'))
-      ]
-    }).addClef('treble').addTimeSignature('4/4')
-
-    vf.draw()
 })
 

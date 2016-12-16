@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "recursive-readdir": "^2.1.0",
-    "vexflow": "^1.2.83"
+    "vexflow": "^1.2.83",
+    "xml2js": "^0.4.17"
   }
 }
