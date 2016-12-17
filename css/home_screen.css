@@ -1,28 +1,4 @@
-html, body {
-  font-family: 'Courier', monospace;
-  margin: 0; }
-  html *, body * {
-    max-width: 100%; }
-
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  -webkit-transition: background ease 500ms; }
-
-button:hover {
-  -webkit-transition: background ease 500ms; }
-
-footer, .presentation, .initial-options {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 40em;
-  padding: 1em; }
-
-footer {
-  font-size: .8em; }
-
-footer, .presentation, .initial-options {
+.presentation, .initial-options {
   text-align: center;
   margin: 0 auto;
   max-width: 40em;
@@ -72,31 +48,3 @@ footer, .presentation, .initial-options {
     padding: .5em;
     text-align: center;
     width: 12em; }
-
-footer, .presentation, .initial-options {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 40em;
-  padding: 1em; }
-
-button.back-button {
-  background: #EF9A9A;
-  border: solid #F44336 2px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 2em;
-  height: 1.6em;
-  margin-left: .5em;
-  position: fixed;
-  width: 1.6em;
-  z-index: 5; }
-  button.back-button:hover {
-    background: #E57373; }
-
-#main-score {
-  height: 90vh;
-  margin: 0 auto;
-  overflow-y: auto; }
-
-.file-header h1 {
-  text-align: center; }

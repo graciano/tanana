@@ -1,6 +1,3 @@
-@import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
-@import "breakpoints";
-@import "colors";
 html, body{
     font-family: 'Courier', monospace;
     margin: 0;
@@ -12,10 +9,16 @@ button {
     background: none;
     border: none;
     cursor: pointer;
+    -webkit-transition: background ease 500ms;
+}
+button:hover{
+    -webkit-transition: background ease 500ms;
 }
 
+@import "small_block";
+
 footer{
-    @extend %initial-screen;
+    @extend %small-block;
     font-size: .8em;
 }
 @import "home_screen";

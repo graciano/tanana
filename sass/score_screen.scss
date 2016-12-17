@@ -1,7 +1,28 @@
+@import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "breakpoints";
+@import "colors";
+@import "small_block";
 
 button.back-button{
-    background: red();
+    $size: 1.6em;
+    background: red(2);
+    border: solid red() 2px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2em;
+    height: $size;
+    margin-left: .5em;
+    position: fixed;
+    width: $size;
+    z-index: 5;
+    &:hover{ background: red(3); }
 }
 #main-score{
+    height: 90vh;
     margin: 0 auto;
+    overflow-y: auto; 
+}
+
+.file-header h1{
+    text-align: center;
 }

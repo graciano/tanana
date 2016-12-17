@@ -1,12 +1,10 @@
-%initial-screen {
-    text-align: center;
-    margin: 0 auto;
-    max-width: 40em;
-    padding: 1em;
-}
+@import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "breakpoints";
+@import "colors";
+@import "small_block";
 
 .presentation{
-    @extend %initial-screen;
+    @extend %small-block;
     & > h1 {
         font-size: 3em;
         margin-top: 0;
@@ -14,7 +12,7 @@
 }
 
 .initial-options{
-    @extend %initial-screen;
+    @extend %small-block;
     box-sizing: border-box;
     display: flex;
     font-size: .9em;
@@ -30,7 +28,7 @@
     }
     @include breakpoint($not-phone){
         & > *:nth-child(2){
-            border-left: 1px solid green();
+            border-left: 1px solid #000;
         }
     }
     p{
@@ -58,9 +56,5 @@
         padding: .5em;
         text-align: center;
         width: 12em;
-        -webkit-transition: background ease 500ms;
-    }
-    button:hover{
-        -webkit-transition: background ease 500ms;
     }
 }

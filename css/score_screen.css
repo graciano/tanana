@@ -1,0 +1,21 @@
+button.back-button {
+  background: #EF9A9A;
+  border: solid #F44336 2px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2em;
+  height: 1.6em;
+  margin-left: .5em;
+  position: fixed;
+  width: 1.6em;
+  z-index: 5; }
+  button.back-button:hover {
+    background: #E57373; }
+
+#main-score {
+  height: 90vh;
+  margin: 0 auto;
+  overflow-y: auto; }
+
+.file-header h1 {
+  text-align: center; }
