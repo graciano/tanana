@@ -8,6 +8,7 @@ const vexflow = require('vexflow'),
     readdir = require('recursive-readdir'),
     score_creator = require('./score_stuff/score_creator.js')
 const {dialog} = require('electron').remote
+const {ipcRenderer} = require('electron')
 
 let buttonExample = document.getElementById('open-example')
 let buttonlibrary = document.getElementById('button-library')
@@ -42,26 +43,27 @@ buttonlibrary.addEventListener('click', function(){
 
 
 buttonExample.addEventListener('click', function(){
-    let musicFile = fs.readFileSync('examples/teste.xml', 'utf-8')
-    xmltojson.parseString(musicFile, function(err, musicjson){
-        let barWidth = 200
-        let mediaQueries = []
-        for(let i=2; i<6; i++) //arbritary whatever
-            mediaQueries.push({
-                "query": window.matchMedia("(min-width:"+(i*barWidth)+"px)"),
-                "bars": i
-            })
-        let barsPerLine = 1
-        //get the maximum bars per line possible
-        for(let obj of mediaQueries){
-            if(obj["query"].matches)
-                barsPerLine = obj["bars"]
-        }
-        let options = {
-            "bars-per-line": barsPerLine,
-            "bar-width": barWidth
-        }
-        score_creator(musicjson, "#main-score", options)
-    })
+    ipcRenderer.send('open-file', 'examples/teste.xml')
+    // let musicFile = fs.readFileSync('examples/teste.xml', 'utf-8')
+    // xmltojson.parseString(musicFile, function(err, musicjson){
+    //     let barWidth = 200
+    //     let mediaQueries = []
+    //     for(let i=2; i<6; i++) //arbritary whatever
+    //         mediaQueries.push({
+    //             "query": window.matchMedia("(min-width:"+(i*barWidth)+"px)"),
+    //             "bars": i
+    //         })
+    //     let barsPerLine = 1
+    //     //get the maximum bars per line possible
+    //     for(let obj of mediaQueries){
+    //         if(obj["query"].matches)
+    //             barsPerLine = obj["bars"]
+    //     }
+    //     let options = {
+    //         "bars-per-line": barsPerLine,
+    //         "bar-width": barWidth
+    //     }
+    //     score_creator(musicjson, "#main-score", options)
+    // })
 })
 

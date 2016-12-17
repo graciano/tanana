@@ -1,4 +1,4 @@
-var vexflow = require('vexflow'),
+const vexflow = require('vexflow'),
     musicutil = require('./musicutil.js')
 
 module.exports = function (musicjson, selector, options) {

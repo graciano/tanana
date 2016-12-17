@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tananã</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  </head>
+  <body>
+    <button id="back-button" class="back-button">Voltar</button>
+    <h1>Carregando Arquivo</h1>
+
+    <div id="main-score"></div>
+
+    <footer>
+      <p>Este projeto é <a href="http://github.com/graciano/tanana">open source</a> e é mantido por <strong>Matheus Graciano</strong></p>
+      <p><a href="mailto:graciano.dev@gmail.com">graciano.dev@gmail.com</a>
+      | <a href="http://graciano.tk">graciano.tk</a></p>
+    </footer>
+
+<!--     <h2>Electron stuff:</h2>
+    <p>
+      We are using Node.js <script>document.write(process.versions.node)</script>,
+      Chromium <script>document.write(process.versions.chrome)</script>,
+      and Electron <script>document.write(process.versions.electron)</script>.
+    </p> -->
+  </body>
+
+  <script>
+    require('./renderer.js')
+  </script>
+</html>
