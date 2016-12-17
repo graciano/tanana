@@ -1,0 +1,86 @@
+@import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "breakpoints";
+@import "colors";
+html, body{
+    font-family: 'Courier', monospace;
+    margin: 0;
+}
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+*{
+    max-width: 100%;
+}
+
+%initial-screen {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 40em;
+    padding: 1em;
+}
+
+.presentation{
+    @extend %initial-screen;
+    & > h1 {
+        font-size: 3em;
+        margin-top: 0;
+    }
+}
+
+.initial-options{
+    @extend %initial-screen;
+    box-sizing: border-box;
+    display: flex;
+    font-size: .9em;
+    flex-wrap: wrap;
+    & > * {
+        box-sizing: border-box;
+        text-align: center;
+        padding: 1em;
+        width: 100%;
+        @include breakpoint($not-phone){
+            width: 50%;
+        }
+    }
+    @include breakpoint($not-phone){
+        & > *:nth-child(2){
+            border-left: 1px solid green();
+        }
+    }
+    p{
+        text-align: left;
+    }
+    .first-example > button{
+        background: red(2);
+        border: solid red() 2px;
+        color: red(8);
+        &:hover{ background: red(3); }
+    }
+    .library > button{
+        background: indigo(2);
+        border: solid indigo() 2px;
+        color: indigo(8);
+        &:hover{ background: indigo(3); }
+    }
+    button {
+        border-radius: 3px;
+        font-family: inherit;
+        font-size: 1.3em;
+        font-weight: bold;
+        height: 4em;
+        margin: 0.25em;
+        padding: .5em;
+        text-align: center;
+        width: 12em;
+        -webkit-transition: background ease 500ms;
+    }
+    button:hover{
+        -webkit-transition: background ease 500ms;
+    }
+}
+footer{
+    @extend %initial-screen;
+    font-size: .8em;
+}

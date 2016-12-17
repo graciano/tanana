@@ -1,0 +1,26 @@
+// material google colors from: http://materialuicolors.co
+
+@function red($level: 5){
+    @if($level==2) { @return #EF9A9A; }
+    @if($level==3) { @return #E57373; }
+    @if($level==8) { @return #C62828; }
+    @return #F44336;
+}
+
+$yellow: #FFEB3B;
+$yellow-2: #FFF59D;
+$yellow-8: #F9A825;
+
+@function green($level: 5){
+    @if($level==2) { @return #A5D6A7; }
+    @if($level==3) { @return #81C784; }
+    @if($level==8) { @return #2E7D32; }
+    @return #4CAF50;
+}
+
+@function indigo($level: 5){
+    @if($level==2) { @return #9FA8DA; }
+    @if($level==3) { @return #7986CB; }
+    @if($level==8) { @return #283593; }
+    @return #3F51B5;
+}

@@ -6,7 +6,7 @@ var vexflow = require('vexflow'),
     xmltojson = require('xml2js').Parser(),
     fs = require('fs'),
     readdir = require('recursive-readdir'),
-    score_creator = require('./score_creator.js')
+    score_creator = require('./score_stuff/score_creator.js')
 const {dialog} = require('electron').remote
 
 var buttonExample = document.getElementById('open-example')

@@ -1,0 +1,68 @@
+html, body {
+  font-family: 'Courier', monospace;
+  margin: 0; }
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer; }
+
+* {
+  max-width: 100%; }
+
+.presentation, .initial-options, footer {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 40em;
+  padding: 1em; }
+
+.presentation > h1 {
+  font-size: 3em;
+  margin-top: 0; }
+
+.initial-options {
+  box-sizing: border-box;
+  display: flex;
+  font-size: .9em;
+  flex-wrap: wrap; }
+  .initial-options > * {
+    box-sizing: border-box;
+    text-align: center;
+    padding: 1em;
+    width: 100%; }
+    @media (min-width: 480px) {
+      .initial-options > * {
+        width: 50%; } }
+  @media (min-width: 480px) {
+    .initial-options > *:nth-child(2) {
+      border-left: 1px solid #4CAF50; } }
+  .initial-options p {
+    text-align: left; }
+  .initial-options .first-example > button {
+    background: #EF9A9A;
+    border: solid #F44336 2px;
+    color: #C62828; }
+    .initial-options .first-example > button:hover {
+      background: #E57373; }
+  .initial-options .library > button {
+    background: #9FA8DA;
+    border: solid #3F51B5 2px;
+    color: #283593; }
+    .initial-options .library > button:hover {
+      background: #7986CB; }
+  .initial-options button {
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 1.3em;
+    font-weight: bold;
+    height: 4em;
+    margin: 0.25em;
+    padding: .5em;
+    text-align: center;
+    width: 12em;
+    -webkit-transition: background ease 500ms; }
+  .initial-options button:hover {
+    -webkit-transition: background ease 500ms; }
+
+footer {
+  font-size: .8em; }

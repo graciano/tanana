@@ -13,9 +13,12 @@
   "author": "Matheus Graciano <graciano.dev@gmail.com>",
   "license": "BSD-4-Clause",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "1.4.1",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.0.0"
   },
   "dependencies": {
+    "breakpoint-sass": "^2.7.1",
     "recursive-readdir": "^2.1.0",
     "vexflow": "^1.2.83",
     "xml2js": "^0.4.17"
