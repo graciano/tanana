@@ -1,6 +1,7 @@
 help:
 	@echo "system requirements:\t linux, npm, electron, gulp"
-	@echo "\tinstall:\t if you just cloned the repo"
+	@echo "\tfor the bulid to work, aditional requirements at: https://github.com/electron-userland/electron-builder/wiki/Multi-Platform-Build"
+	@echo "\tinstall:\t if you just cloned the repo (required to run other commands)"
 	@echo "\tdev:\t\t if you want to run a debug version"
 	@echo "\tbuild:\t\t to build release binaries"
 	@echo "\tclean:\t\t clean build mess"
@@ -13,10 +14,8 @@ dev: gulpfile.js node_modules/
 	gulp watch &
 	yarn start &
 
-build: build.sh
-	chmod +x build.sh
-	./build.sh
+build: package.json app/ node_modules/
+	yarn dist
 
-clean: electron/
-	cd electron
-	npm run clean
+clean: dist/
+	sudo rm -rf dist

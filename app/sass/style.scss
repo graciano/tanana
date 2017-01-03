@@ -20,6 +20,7 @@ button:hover{
 footer{
     @extend %small-block;
     font-size: .8em;
+    padding: 0 !important;
 }
 @import "home_screen";
 @import "score_screen";

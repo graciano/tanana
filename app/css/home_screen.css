@@ -2,7 +2,8 @@
   text-align: center;
   margin: 0 auto;
   max-width: 40em;
-  padding: 1em; }
+  padding-left: 1em;
+  padding-right: 1em; }
 
 .presentation > h1 {
   font-size: 3em;

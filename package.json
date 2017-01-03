@@ -2,9 +2,11 @@
   "name": "tanana",
   "version": "0.0.1",
   "description": "Software para aprendizado de partituras musicais.",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "start": "/usr/bin/electron ."
+    "start": "/usr/bin/electron .",
+      "pack": "build --dir",
+      "dist": "build -lwm"
   },
   "repository": "https://github.com/graciano/tanana",
   "keywords": [
@@ -14,6 +16,7 @@
   "license": "BSD-4-Clause",
   "devDependencies": {
     "electron": "1.4.1",
+    "electron-builder": "^10.8.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.0.0"
   },
@@ -22,5 +25,28 @@
     "recursive-readdir": "^2.1.0",
     "vexflow": "^1.2.83",
     "xml2js": "^0.4.17"
-  }
+  },
+  "build": {
+        "appId": "tk.graciano.tanana",
+        "mac":{
+          "category" : "public.app-category.education"
+        },
+        "dmg": {
+        },
+        "win": {
+            "iconUrl": "https://cdn.pixabay.com/photo/2015/12/09/22/09/music-1085655_960_720.png"
+        },
+        "files":[
+          "**/*.js",
+          "**/*.html",
+          "*.md",
+          "css/**/*.css"
+        ],
+        "extraResources":[
+          "../examples/**/*.xml"
+        ],
+        "license": "LICENSE.md",
+        "language": "pt-BR",
+        "category": "Education"
+    }
 }

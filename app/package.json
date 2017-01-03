@@ -1,0 +1,10 @@
+{
+    "name": "tanana",
+    "productName": "Tananã",
+    "version": "0.0.1",
+    "description": "Software para aprendizado de partituras musicais.",
+    "main": "main.js",
+    "author": "Matheus Graciano <graciano.dev@gmail.com>",
+    "license": "BSD-4-Clause",
+    "homepage": "http://github.com/graciano/tanana"
+}

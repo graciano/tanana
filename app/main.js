@@ -4,9 +4,13 @@ const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 const {ipcMain} = require('electron')
+const path = require('path')
+module.paths.push(path.resolve('node_modules'))
+module.paths.push(path.resolve('../node_modules'))
+module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app', 'node_modules'))
+module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app.asar', 'node_modules'))
 const xmltojson = require('xml2js').Parser()
 
-const path = require('path')
 const url = require('url')
 const fs = require('fs')
 
@@ -29,7 +33,7 @@ function openMainWindow () {
         fileWindow.close()
 
     // Open the DevTools. todo: comment this line on releases
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -85,7 +89,7 @@ function openFileWindow(filePath){
         mainWindow.close()
 
         // Open the DevTools. todo: comment this line on releases
-        fileWindow.webContents.openDevTools()
+        // fileWindow.webContents.openDevTools()
 
         fileWindow.on('closed', function () {
             fileWindow = null

@@ -1,4 +1,5 @@
-electron/
+dist/
+tanana.zip
 
 # Created by https://www.gitignore.io/api/windows,osx,sublimetext,node,linux
 

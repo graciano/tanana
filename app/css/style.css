@@ -17,16 +17,19 @@ footer, .presentation, .initial-options {
   text-align: center;
   margin: 0 auto;
   max-width: 40em;
-  padding: 1em; }
+  padding-left: 1em;
+  padding-right: 1em; }
 
 footer {
-  font-size: .8em; }
+  font-size: .8em;
+  padding: 0 !important; }
 
 footer, .presentation, .initial-options {
   text-align: center;
   margin: 0 auto;
   max-width: 40em;
-  padding: 1em; }
+  padding-left: 1em;
+  padding-right: 1em; }
 
 .presentation > h1 {
   font-size: 3em;
@@ -77,7 +80,8 @@ footer, .presentation, .initial-options {
   text-align: center;
   margin: 0 auto;
   max-width: 40em;
-  padding: 1em; }
+  padding-left: 1em;
+  padding-right: 1em; }
 
 button.back-button {
   background: #EF9A9A;
