@@ -1,3 +1,4 @@
+const checkNested = require('./../util/check-nested.js')
 
 function MusicUtil(){
     this.FIFTHS_CICLE = [
@@ -21,14 +22,14 @@ MusicUtil.prototype.keySignature = function(sharpsOrFlats) {
 * @arg timeObj from musicXML format
 */
 MusicUtil.prototype.timeSignature = function(timeObj) {
-    return  timeObj["beats"][0]
-            +"/"+timeObj["beat-type"][0]
+    return  checkNested(timeObj, "beats", 0)
+            +"/"+checkNested(timeObj, "beat-type", 0)
 }
 
 MusicUtil.prototype.noteString = function(note, timeObj, divisions) {
     var duration_xml = parseInt(note["duration"][0])
-    var beats = parseInt(timeObj["beats"][0])
-    var beatType = parseInt(timeObj["beat-type"][0])
+    var beats = parseInt(checkNested(timeObj, "beats", 0))
+    var beatType = parseInt(checkNested(timeObj, "beat-type", 0))
     // var duration = (duration_xml / beats) * beatType
 
     var max_duration = beats * beatType

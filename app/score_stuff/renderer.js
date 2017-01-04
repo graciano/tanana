@@ -2,6 +2,7 @@ const score_creator = require('./score_creator.js')
 const {electron} = require('electron')
 const {ipcRenderer} = require('electron')
 const checkNested = require('./../util/check-nested.js')
+const {dialog} = require('electron').remote
 
 let libPath
 ipcRenderer.send('read-file')
@@ -10,8 +11,6 @@ ipcRenderer.send('back-to-lib-window')
 
 ipcRenderer.on('back-to-lib-window-reply', (event, arg) => {
     libPath = arg
-    console.log('received')
-    console.log(libPath)
 })
 
 ipcRenderer.on('read-file-reply', (event, arg) => {
@@ -36,7 +35,12 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
         "bars-per-line": barsPerLine,
         "bar-width": barWidth
     }
-    score_creator(musicjson, "#main-score", options)
+    try{
+        score_creator(musicjson, "#main-score", options)
+    }catch(err){
+        console.log(err)
+        dialog.showErrorBox('Tananã - erro', err.message)
+    }
     let title = checkNested(musicjson,
             "score-partwise", "work", 0, "work-title", 0)
     title = title? title : "Música Desconhecida"

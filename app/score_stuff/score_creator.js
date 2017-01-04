@@ -1,5 +1,6 @@
 const vexflow = require('vexflow'),
-    musicutil = require('./musicutil.js')
+    musicutil = require('./musicutil.js'),
+    checkNested = require('./../util/check-nested.js')
 
 module.exports = function (musicjson, selector, options) {
     if(typeof options !== "object")
@@ -27,7 +28,7 @@ module.exports = function (musicjson, selector, options) {
     var keySignature = musicutil.keySignature(
             first_bar['attributes'][0]['key'][0]['fifths'])
     var divisions = first_bar['attributes'][0]['divisions'][0]
-    var timeObj = first_bar['attributes'][0]['time'][0]
+    var timeObj = checkNested(first_bar, 'attributes', 0, 'time', 0)
     var timeSignature = musicutil.timeSignature(timeObj)
     console.log(timeSignature)
 
