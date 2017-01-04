@@ -1,5 +1,6 @@
 const fs = require('fs'),
-    readdir = require('recursive-readdir')
+    readdir = require('recursive-readdir'),
+    settings = require('electron-settings')
 const {dialog} = require('electron').remote
 const {ipcRenderer} = require('electron')
 
@@ -40,12 +41,13 @@ function loadLib(path){
         if(countFiles>0){
           selectFileElem.size = countFiles
           selectFileElem.disabled = false
+          settings.setSync("library", libPath)
         }
         else{
           dialog.showMessageDialog(null, {
             "title":"Tananã - Aviso",
             "message": "Nenhum arquivo encontrado!"
-          })
+          }) //todo: why isn't this working?
           selectFileElem.disabled = true
         }
       }

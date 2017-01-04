@@ -10,6 +10,7 @@ module.paths.push(path.resolve('../node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app', 'node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app.asar', 'node_modules'))
 const xmltojson = require('xml2js').Parser()
+const settings = require('electron-settings')
 
 const url = require('url')
 const fs = require('fs')
@@ -45,18 +46,19 @@ function openMainWindow () {
     })
 }
 
+function openApp(){
+    let alreadyOpenedWindow = false
+    if(fs.existsSync(settings.getSettingsFilePath()))
+        if(alreadyOpenedWindow = settings.hasSync("library"))
+            openLibWindow(settings.getSync("library"))
+    if(!alreadyOpenedWindow)
+        openMainWindow()
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', function () {
-    if(fs.existsSync('config.json')){
-        let config = JSON.parse(fs.readFileSync('config.json', 'utf-8'))
-        if(config.hasOwnProperty('library'))
-            console.log('create library window')
-        openMainWindow()
-    }
-    openMainWindow()
-})
+app.on('ready', openApp)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -71,7 +73,7 @@ app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (mainWindow === null && libWindow === null && fileWindow === null) {
-        openMainWindow()
+        openApp()
     }
 })
 
