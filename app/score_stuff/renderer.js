@@ -50,7 +50,14 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
 
 let backButton = document.querySelector("#back-button")
 
-backButton.addEventListener('click', function(){
+function goBack(){
     if(libPath) ipcRenderer.send('open-lib', libPath)
     else ipcRenderer.send('open-main-window')
+}
+
+backButton.addEventListener('click', goBack)
+window.addEventListener('keyup', (ev) => {
+    if(ev.keyCode === 27) // escape key
+        goBack()
+    else return false
 })

@@ -32,9 +32,9 @@ function loadLib(path){
               let option = document.createElement('option')
               option.value = file
               option.textContent = file.split('/').pop()
-              option.addEventListener('dbclick', (ev) => {
-                openFile(this.value)}
-              )
+              option.addEventListener('dblclick', (ev) => {
+                openFile(option.value)
+              })
               selectFileElem.appendChild(option)
             }
         }
@@ -44,10 +44,10 @@ function loadLib(path){
           settings.setSync("library", libPath)
         }
         else{
-          dialog.showMessageDialog(null, {
+          dialog.showMessageBox({
             "title":"Tananã - Aviso",
             "message": "Nenhum arquivo encontrado!"
-          }) //todo: why isn't this working?
+          })
           selectFileElem.disabled = true
         }
       }
@@ -64,7 +64,10 @@ function openFile(file){
 function openSelectedFile(){
     let selectedFiles = selectFileElem.selectedOptions
     if(selectedFiles.length === 0)
-      throw new Error("there is no selected file")
+      dialog.showMessageBox({
+            "title":"Tananã - Aviso",
+            "message": "Nenhum arquivo foi selecionado!"
+          })
     openFile(selectedFiles[0].value)
 }
 
