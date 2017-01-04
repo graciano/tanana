@@ -98,9 +98,61 @@ button.back-button {
     background: #E57373; }
 
 #main-score {
-  height: 90vh;
-  margin: 0 auto;
-  overflow-y: auto; }
+  min-height: 50vh;
+  margin: 0 auto; }
 
 .file-header h1 {
   text-align: center; }
+
+footer, .presentation, .initial-options {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 40em;
+  padding-left: 1em;
+  padding-right: 1em; }
+
+.lib-header h1 {
+  font-size: 3em;
+  text-align: center;
+  margin-top: 0; }
+
+.lib-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 90vw; }
+  .lib-wrapper > * {
+    box-sizing: border-box;
+    padding: 1em;
+    text-align: center;
+    width: 100%; }
+    @media (min-width: 480px) {
+      .lib-wrapper > * {
+        width: 50%; } }
+  .lib-wrapper .file-navigator {
+    max-height: 50vh;
+    overflow-y: auto;
+    width: 100%; }
+    .lib-wrapper .file-navigator option {
+      padding: .3em; }
+  .lib-wrapper .buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .lib-wrapper .buttons button {
+      background-color: #3F51B5;
+      border: solid 1px #283593;
+      border-radius: 3px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 1.3em;
+      font-weight: bold;
+      height: 4em;
+      margin: 0.25em;
+      padding: 0;
+      text-align: center;
+      width: 12em; }
+      .lib-wrapper .buttons button:hover {
+        background-color: #9FA8DA; }

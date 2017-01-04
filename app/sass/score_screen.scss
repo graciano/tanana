@@ -1,4 +1,4 @@
-@import "../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
 @import "breakpoints";
 @import "colors";
 @import "small_block";
@@ -17,10 +17,10 @@ button.back-button{
     z-index: 5;
     &:hover{ background: red(3); }
 }
+
 #main-score{
-    height: 90vh;
+    min-height: 50vh;
     margin: 0 auto;
-    overflow-y: auto; 
 }
 
 .file-header h1{

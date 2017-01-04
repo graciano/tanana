@@ -13,9 +13,8 @@ button.back-button {
     background: #E57373; }
 
 #main-score {
-  height: 90vh;
-  margin: 0 auto;
-  overflow-y: auto; }
+  min-height: 50vh;
+  margin: 0 auto; }
 
 .file-header h1 {
   text-align: center; }

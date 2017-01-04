@@ -3,7 +3,16 @@ const {electron} = require('electron')
 const {ipcRenderer} = require('electron')
 const checkNested = require('./../util/check-nested.js')
 
+let libPath
 ipcRenderer.send('read-file')
+ipcRenderer.send('back-to-lib-window')
+
+
+ipcRenderer.on('back-to-lib-window-reply', (event, arg) => {
+    libPath = arg
+    console.log('received')
+    console.log(libPath)
+})
 
 ipcRenderer.on('read-file-reply', (event, arg) => {
     let musicjson = arg
@@ -38,6 +47,6 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
 let backButton = document.querySelector("#back-button")
 
 backButton.addEventListener('click', function(){
-    console.log('clicked')
-    ipcRenderer.send('open-main-window')
+    if(libPath) ipcRenderer.send('open-lib', libPath)
+    else ipcRenderer.send('open-main-window')
 })

@@ -1,0 +1,59 @@
+@import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
+@import "breakpoints";
+@import "colors";
+@import "small_block";
+
+.lib-header h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-top: 0;
+}
+
+.lib-wrapper{
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 90vw;
+
+    & > * {
+        box-sizing: border-box;
+        padding: 1em;
+        text-align: center;
+        width: 100%;
+        @include breakpoint($not-phone){
+            width: 50%;
+        }
+    }
+    .file-navigator{
+        max-height: 50vh;
+        overflow-y: auto;
+        width: 100%;
+        option{
+            padding: .3em;
+        }
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        button {
+            background-color: indigo(5); 
+            border: solid 1px indigo(8);
+            border-radius: 3px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1.3em;
+            font-weight: bold;
+            height: 4em;
+            margin: 0.25em;
+            padding: 0;
+            text-align: center;
+            width: 12em;
+            &:hover{
+                background-color: indigo(2);
+            }
+        }
+    }
+}

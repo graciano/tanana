@@ -16,8 +16,9 @@ const fs = require('fs')
 
 // Keep a global reference of the windows objects, if you don't, the windows will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
-let fileWindow
+let mainWindow = null
+let fileWindow = null
+let libWindow = null
 
 function openMainWindow () {
     // Create the browser window.
@@ -69,13 +70,20 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (mainWindow === null) {
+    if (mainWindow === null && libWindow === null && fileWindow === null) {
         openMainWindow()
     }
 })
 
-function openFileWindow(filePath){
-    let musicFile = fs.readFileSync('examples/teste.xml', 'utf-8')
+function closeAllWindowsBut(windowToOpen){
+    for(let w of [mainWindow, fileWindow, libWindow]){
+        if(w!=null && w!=windowToOpen) w.close()
+    }
+}
+
+function openFileWindow(filePath, libPath){
+    filePath = filePath === undefined ? 'examples/teste.xml' : filePath
+    let musicFile = fs.readFileSync(filePath, 'utf-8')
     xmltojson.parseString(musicFile, function(err, musicjson){
         // Create the browser window.
         fileWindow = new BrowserWindow({width: 1024, height: 600})
@@ -86,13 +94,18 @@ function openFileWindow(filePath){
             protocol: 'file:',
             slashes: true
         }))
-        mainWindow.close()
+        closeAllWindowsBut(fileWindow)
 
         // Open the DevTools. todo: comment this line on releases
         // fileWindow.webContents.openDevTools()
 
         fileWindow.on('closed', function () {
             fileWindow = null
+        })
+        
+        ipcMain.removeAllListeners('back-to-lib-window')
+        ipcMain.on('back-to-lib-window', (event, arg) => {
+            event.sender.send('back-to-lib-window-reply', libPath)
         })
         ipcMain.removeAllListeners('read-file')
         ipcMain.on('read-file', (event, arg) => {
@@ -102,14 +115,37 @@ function openFileWindow(filePath){
 
 }
 
+function openLibWindow(libPath){
+    // Create the browser window.
+    libWindow = new BrowserWindow({width: 1024, height: 600})
+
+    libWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'lib_screen/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+    closeAllWindowsBut(libWindow)
+
+    libWindow.on('closed', function () {
+        libWindow = null
+    })
+    ipcMain.removeAllListeners('read-lib')
+    ipcMain.on('read-lib', (event, arg) => {
+        event.sender.send('read-lib-reply', libPath)
+    })
+}
+
 
 // message events to windows
 // reference examples: https://github.com/electron/electron/blob/master/docs/api/ipc-main.md
 ipcMain.on('open-file', function(ev, arg){
-    openFileWindow(arg)
+    openFileWindow(arg.path, arg.libPath)
 })
 
 ipcMain.on('open-main-window', function(ev, arg){
-    console.log("hello")
     openMainWindow()
+})
+
+ipcMain.on('open-lib', function(ev, arg){
+    openLibWindow(arg)
 })

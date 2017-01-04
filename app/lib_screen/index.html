@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Tananã - Minha Biblioteca</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  </head>
+  <body>
+    <header class="lib-header">
+      <h1>Tananã - Minha Biblioteca</h1>
+    </header>
+    <div class="lib-wrapper">
+      <section class="lib-container">
+        <h2>Arquivos <a href="https://www.musicxml.com">musicXML</a></h2>
+        <select id="file-navigator" class="file-navigator" size="2">
+          
+        </select>
+      </section>
+      <div class="buttons">
+        <button id="open-selected" type="button">Abrir Selecionado</button>
+        <button id="change-lib" type="button">Trocar Biblioteca</button>
+        <button id="open-file" type="button">Abrir arquivo...</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>Este projeto é <a href="http://github.com/graciano/tanana">open source</a> e é mantido por <strong>Matheus Graciano</strong></p>
+      <p><a href="http://graciano.tk">graciano.tk</a></p>
+    </footer>
+  </body>
+
+  <script>
+    require('./renderer.js')
+  </script>
+</html>

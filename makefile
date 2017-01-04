@@ -10,7 +10,8 @@ install: package.json
 	yarn
 	gulp sass
 
-dev: gulpfile.js node_modules/
+dev: gulpfile.js node_modules/ package.json
+	yarn
 	gulp watch &
 	yarn start &
 
