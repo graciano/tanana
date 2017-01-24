@@ -11,8 +11,7 @@ Most of the musicians I know are kind of "*semi iletrate*" in music scores. Myse
 
 ## Project status and milestones
 
-Currently it doesn't work quite well. It just reads a [Music XML](http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#Tutorial.htm%3FTocPath%3DMusicXML%25203.0%2520Tutorial%7C_____0) file and tries to make a music score (like a bazillion other projects already do). In the future this will be useful to practice music score reading. [Github milestones](https://github.com/graciano/tanana/milestones) are keeping track of what will be implemented.
-Join the [developer chat in telegram](https://telegram.me/joinchat/AX-8VUBEo7Yy-36ovYfFEQ).
+Currently it doesn't work quite well. It just reads a [Music XML](http://usermanuals.musicxml.com/MusicXML/MusicXML.htm#Tutorial.htm%3FTocPath%3DMusicXML%25203.0%2520Tutorial%7C_____0) file and tries to make a music score (like a bazillion other projects already do). [Here is a video](https://drive.google.com/file/d/0BzCvf4xDDyNpWHpveDlud05FRlU/view?usp=sharing) with a demonstration of what the project can do right now. In the future this will be useful to practice music score reading. [Github milestones](https://github.com/graciano/tanana/milestones) are keeping track of what will be implemented, and I'm *dreaming* with having a player that checks if you are playing the score correctly in you MIDI keyboard, for example.
 
 ## This project is using:
 
