@@ -6,7 +6,8 @@
   "scripts": {
     "start": "/usr/bin/electron .",
     "pack": "build --dir",
-    "dist": "build -lwm"
+    "dist": "build -lm",
+    "dist-windows" : "build -w"
   },
   "repository": "https://github.com/graciano/tanana",
   "keywords": [
