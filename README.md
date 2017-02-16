@@ -2,8 +2,11 @@ Tananã
 ======
 
 > Software to learn/practice music scores. It's pronouced like "*tah-nah-naan*" É só um trabalho da faculdade, mas pode ficar bem legal.
+
+![https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true](https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true)
   
  ![print](http://i.imgur.com/FYmVeXm.png?2)
+
 
 ### Project motivation
 
