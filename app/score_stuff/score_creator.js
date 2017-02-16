@@ -8,7 +8,7 @@ module.exports = function (musicjson, selector, options) {
     var barWidth = options.hasOwnProperty("bar-width")? 
                    parseInt(options["bar-width"]) : 200
     var lineHeight = options.hasOwnProperty("line-height")?
-                   parseInt(options["line-height"]) : 70
+                   parseInt(options["line-height"]) : 100
     var spaceBetweenStaves = options.hasOwnProperty("space-between-staves")?
                    parseInt(options["space-between-staves"]) : 10
     //todo make this responsive
