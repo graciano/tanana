@@ -6,8 +6,8 @@
   "scripts": {
     "start": "/usr/bin/electron .",
     "pack": "build --dir",
-    "dist": "build -lm",
-    "dist-windows" : "build -w"
+    "dist": "build",
+    "dist-windows": "build -w"
   },
   "repository": "https://github.com/graciano/tanana",
   "keywords": [
@@ -25,7 +25,6 @@
     "breakpoint-sass": "^2.7.1",
     "electron-settings": "^2.2.2",
     "recursive-readdir": "^2.1.0",
-    "vexflow": "^1.2.83",
     "xml2js": "^0.4.17"
   },
   "build": {

@@ -2729,10 +2729,6 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-vexflow@^1.2.83:
-  version "1.2.83"
-  resolved "https://registry.yarnpkg.com/vexflow/-/vexflow-1.2.83.tgz#cd4b37aca41700d5797bc503346871901af97943"
-
 vinyl-fs@^0.3.0:
   version "0.3.14"
   resolved "https://registry.yarnpkg.com/vinyl-fs/-/vinyl-fs-0.3.14.tgz#9a6851ce1cac1c1cea5fe86c0931d620c2cfa9e6"

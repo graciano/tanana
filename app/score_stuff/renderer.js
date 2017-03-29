@@ -14,37 +14,21 @@ ipcRenderer.on('back-to-lib-window-reply', (event, arg) => {
 })
 
 ipcRenderer.on('read-file-reply', (event, arg) => {
-    let musicjson = arg
-    let barWidth = 200
-    let mediaQueries = []
-    let bleed = 60
+    let fileData = arg.fileData
 
-    for(let i=2; i<6; i++) //arbritary number hard coded whatever
-        mediaQueries.push({
-            "query": window.matchMedia("(min-width:"
-                                       +((i*barWidth) + bleed)+"px)"),
-            "bars": i
-        })
-    let barsPerLine = 1
-    //get the maximum bars per line possible
-    for(let obj of mediaQueries){
-        if(obj["query"].matches)
-            barsPerLine = obj["bars"]
-    }
-    let options = {
-        "bars-per-line": barsPerLine,
-        "bar-width": barWidth
-    }
     try{
-        score_creator(musicjson, "#main-score", options)
+      let scoreElem = document.querySelector("#main-score")
+      let osmd = new OSMD(scoreElem, true)
+      osmd.load(fileData)
+      osmd.render()
     }catch(err){
         console.log(err)
         dialog.showErrorBox('Tananã - erro', err.message)
     }
-    let title = checkNested(musicjson,
-            "score-partwise", "work", 0, "work-title", 0)
+    //TODO get title from osmd
+    let title = null
     title = title? title : "Música Desconhecida"
-    document.querySelector("h1").textContent = title
+    document.querySelector("h1").remove()
     document.title = title + " | Tananã"
 })
 

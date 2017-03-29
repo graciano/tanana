@@ -86,32 +86,29 @@ function closeAllWindowsBut(windowToOpen){
 function openFileWindow(filePath, libPath){
     filePath = filePath === undefined ? 'examples/teste.xml' : filePath
     let musicFile = fs.readFileSync(filePath, 'utf-8')
-    xmltojson.parseString(musicFile, function(err, musicjson){
-        // Create the browser window.
-        fileWindow = new BrowserWindow({width: 1024, height: 600})
-        fileWindow.musicjson = musicjson
+    // Create the browser window.
+    fileWindow = new BrowserWindow({width: 1024, height: 600})
 
-        fileWindow.loadURL(url.format({
-            pathname: path.join(__dirname, 'score_stuff/index.html'),
-            protocol: 'file:',
-            slashes: true
-        }))
-        closeAllWindowsBut(fileWindow)
+    fileWindow.loadURL(url.format({
+        pathname: path.join(__dirname, 'score_stuff/index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
+    closeAllWindowsBut(fileWindow)
 
-        // Open the DevTools. todo: comment this line on releases
-        // fileWindow.webContents.openDevTools()
+    fileWindow.on('closed', function () {
+        fileWindow = null
+    })
 
-        fileWindow.on('closed', function () {
-            fileWindow = null
-        })
-        
-        ipcMain.removeAllListeners('back-to-lib-window')
-        ipcMain.on('back-to-lib-window', (event, arg) => {
-            event.sender.send('back-to-lib-window-reply', libPath)
-        })
-        ipcMain.removeAllListeners('read-file')
-        ipcMain.on('read-file', (event, arg) => {
-            event.sender.send('read-file-reply', musicjson)
+    ipcMain.removeAllListeners('back-to-lib-window')
+    ipcMain.on('back-to-lib-window', (event, arg) => {
+        event.sender.send('back-to-lib-window-reply', libPath)
+    })
+    ipcMain.removeAllListeners('read-file')
+    ipcMain.on('read-file', (event, arg) => {
+        event.sender.send('read-file-reply', {
+          'filePath' : filePath,
+          'filedata': musicFile
         })
     })
 
