@@ -4,7 +4,7 @@
   "description": "Software para aprendizado de partituras musicais.",
   "main": "app/main.js",
   "scripts": {
-    "start": "/usr/bin/electron .",
+    "start": "electron .",
     "pack": "build --dir",
     "dist": "build",
     "dist-windows": "build -w"

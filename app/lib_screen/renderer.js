@@ -1,6 +1,6 @@
 const fs = require('fs'),
-    readdir = require('recursive-readdir'),
-    settings = require('electron-settings')
+readdir = require('recursive-readdir'),
+settings = require('electron-settings')
 const {dialog} = require('electron').remote
 const {ipcRenderer} = require('electron')
 
@@ -15,43 +15,42 @@ let selectFileElem = document.getElementById('file-navigator')
 let libPath
 
 function loadLib(path){
-    libPath = path
-    //cleaning element first
-    while (selectFileElem.firstChild) {
-        selectFileElem.removeChild(selectFileElem.firstChild)
-    }
-    let countFiles = 0
-    readdir(path, [], function (err, files) {
-      if(files.length){
-        for (let i = files.length - 1; i >= 0; i--) {
-            let file = files[i]
-            if(MUSIC_XML_FORMATS.indexOf(
-                                         file.split('.').pop().toLowerCase()
-                                         ) != -1){
-              countFiles++
-              let option = document.createElement('option')
-              option.value = file
-              option.textContent = file.split('/').pop()
-              option.addEventListener('dblclick', (ev) => {
-                openFile(option.value)
-              })
-              selectFileElem.appendChild(option)
-            }
-        }
-        if(countFiles>0){
-          selectFileElem.size = countFiles
-          selectFileElem.disabled = false
-          settings.setSync("library", libPath)
-        }
-        else{
-          dialog.showMessageBox({
-            "title":"Tananã - Aviso",
-            "message": "Nenhum arquivo encontrado!"
+  libPath = path
+  //cleaning element first
+  while (selectFileElem.firstChild) {
+    selectFileElem.removeChild(selectFileElem.firstChild)
+  }
+  let countFiles = 0
+  readdir(path, [], function (err, files) {
+    if(files.length){
+      for (let i = files.length - 1; i >= 0; i--) {
+        let file = files[i]
+        let fileFormat = file.split('.').pop().toLowerCase()
+        if (MUSIC_XML_FORMATS.indexOf(fileFormat) != -1) {
+          countFiles++
+          let option = document.createElement('option')
+          option.value = file
+          option.textContent = file.split('/').pop()
+          option.addEventListener('dblclick', (ev) => {
+            openFile(option.value)
           })
-          selectFileElem.disabled = true
+          selectFileElem.appendChild(option)
         }
       }
-    })
+      if(countFiles>0){
+        selectFileElem.size = countFiles
+        selectFileElem.disabled = false
+        settings.setSync("library", libPath)
+      }
+      else{
+        dialog.showMessageBox({
+          "title":"Tananã - Aviso",
+          "message": "Nenhum arquivo encontrado!"
+        })
+        selectFileElem.disabled = true
+      }
+    }
+  })
 }
 
 function openFile(file){
@@ -62,13 +61,13 @@ function openFile(file){
 }
 
 function openSelectedFile(){
-    let selectedFiles = selectFileElem.selectedOptions
-    if(selectedFiles.length === 0)
-      dialog.showMessageBox({
-            "title":"Tananã - Aviso",
-            "message": "Nenhum arquivo foi selecionado!"
-          })
-    openFile(selectedFiles[0].value)
+  let selectedFiles = selectFileElem.selectedOptions
+  if (selectedFiles.length === 0) {
+    dialog.showMessageBox({
+      "title":"Tananã - Aviso",
+      "message": "Nenhum arquivo foi selecionado!"
+    })
+  } else openFile(selectedFiles[0].value)
 }
 
 selectFileElem.addEventListener('keyup', (ev) => {
@@ -78,17 +77,15 @@ selectFileElem.addEventListener('keyup', (ev) => {
 })
 
 buttonFile.addEventListener('click', (ev) => {
-    file = dialog.showOpenDialog({properties: ['openFile']})[0]
-    openFile(file)
+  file = dialog.showOpenDialog({properties: ['openFile']})[0]
+  openFile(file)
 })
 
-buttonOpenSelected.addEventListener('click', (ev) => {
-    openSelectedFile()
-})
+buttonOpenSelected.addEventListener('click', openSelectedFile)
 
 buttonlibrary.addEventListener('click', (ev) => {
-    libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
-    loadLib(libPath)
+  libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
+  loadLib(libPath)
 })
 
 ipcRenderer.send('read-lib')

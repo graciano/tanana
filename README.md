@@ -4,7 +4,7 @@ Tananã
 > Software to learn/practice music scores. It's pronouced like "*tah-nah-naan*" É só um trabalho da faculdade, mas pode ficar bem legal.
 
 ![https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true](https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true)
-  
+
  ![print](http://i.imgur.com/FYmVeXm.png?2)
 
 
@@ -19,17 +19,16 @@ Currently it doesn't work quite well. It just reads a [Music XML](http://userman
 ## This project is using:
 
  - [yarn](https://code.facebook.com/posts/1840075619545360) (*if you know your npm, this will be easy*)
- - [gulp](http://gulpjs.com/)
- - [electron](http://electron.atom.io)
- - [VexFlow](https://github.com/0xfe/vexflow) *to create an svg music score*
-
-All of those dependencies, unless vezflow, must be installed globally in npm.
+ - [gulp](http://gulpjs.com/), install with `npm i -g gulp`
+ - [electron](http://electron.atom.io), install with `npm i -g electron`
+ - [Open Sheet Music Display](opensheetmusicdisplay.org), that reads a music xml and uses [VexFlow](https://github.com/0xfe/vexflow) *to create an svg music score*.
 
 ### Yeah, cool, but after I clone the repo, what do I do?
 
  - `git clone git@github.com:graciano/tanana.git && cd tanana`
- - `make` # and then, read instructions ;)
- 
- **warning**: the build script in the makefile is deprecated
+ - `yarn` # to install dependencies
+ - `gulp watch` to watch sass files
+ - `yarn start`to run the applicatio. **Tip: in the screen, cmd+shift+I opens the inspector from chromium**
+
 ## License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)
