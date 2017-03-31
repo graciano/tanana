@@ -1,7 +1,7 @@
 {
     "name": "tanana",
     "productName": "Tananã",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "description": "Software para aprendizado de partituras musicais.",
     "main": "main.js",
     "author": "Matheus Graciano <graciano.dev@gmail.com>",

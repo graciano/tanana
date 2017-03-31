@@ -1,6 +1,6 @@
 {
   "name": "tanana",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Software para aprendizado de partituras musicais.",
   "main": "app/main.js",
   "scripts": {
