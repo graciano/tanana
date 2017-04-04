@@ -1,5 +1,5 @@
 let OSMD = require('opensheetmusicdisplay').OSMD
-let Player = require('./player.js')
+let Player = require('./Player.js')
 const {electron} = require('electron')
 const {ipcRenderer} = require('electron')
 const checkNested = require('./../util/check-nested.js')
@@ -18,19 +18,30 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
   let fileData = arg['fileData']
 
   try{
+    //render music sheet
     let scoreElem = document.querySelector("#main-score")
     let sheet = new OSMD(scoreElem)
     sheet.load(fileData, true)
     sheet.render()
+
+    //removing loading warning
     document.querySelector("h1").remove()
-    sheet.cursor.show()
-    console.log(sheet.cursor)
+
+    //creating player and adding it's listeners on buttons
     let player = new Player({
       'bpm': 120,
       'sheet': sheet
     })
     console.log(player)
-    player.play()
+    player.start()
+
+    document.addEventListener('keyup', ev => {
+      //space bar
+      if (ev.keyCode == 32) {
+        player.toggle()
+      }
+      return false
+    })
   }catch(err){
     console.log(err)
     dialog.showErrorBox('Tananã - erro', err.message)
