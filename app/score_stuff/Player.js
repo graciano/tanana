@@ -16,12 +16,21 @@ module.exports = class Player {
     this.playing = true
     let that = this
     let execute = function(cursor) {
+      console.log(cursor.iterator)
+      console.log(cursor)
+      // bigger possible size is the size of the measure itself
       let time = cursor.iterator.currentMeasure.duration.realValue
+      for (let voice of cursor.iterator.currentVoiceEntries) {
+        for (let note of voice.notes) {
+          let noteLenght = note.lenght.realValue
+          time = time > noteLenght ? noteLenght : time
+        }
+      }
       that.sleep(time).then( () => {
         cursor.next()
         console.log('note')
         console.log(time)
-        console.log(cursor.iterator.currentMeasure)
+        console.log(cursor.iterator.currentVoiceEntries)
         console.log('---------end note---------')
         if (cursor.iterator.endReached) {
           that.done = true
