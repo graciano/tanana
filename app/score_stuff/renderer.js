@@ -42,6 +42,13 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
       }
       return false
     })
+
+    //preventing spacebar from scrolling
+    document.addEventListener('keydown', ev => {
+      if (ev.keyCode == 32) {
+        ev.preventDefault()
+      }
+    })
   }catch(err){
     console.log(err)
     dialog.showErrorBox('Tananã - erro', err.message)
