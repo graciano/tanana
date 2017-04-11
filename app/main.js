@@ -9,7 +9,6 @@ module.paths.push(path.resolve('node_modules'))
 module.paths.push(path.resolve('../node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app', 'node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app.asar', 'node_modules'))
-const xmltojson = require('xml2js').Parser()
 const settings = require('electron-settings')
 
 const url = require('url')
@@ -31,8 +30,7 @@ function openMainWindow () {
     protocol: 'file:',
     slashes: true
   }))
-  if(fileWindow)
-  fileWindow.close()
+  if (fileWindow) { fileWindow.close() }
 
   // Open the DevTools. todo: comment this line on releases
   // mainWindow.webContents.openDevTools()
@@ -46,13 +44,13 @@ function openMainWindow () {
   })
 }
 
-function openApp(){
+function openApp () {
   let alreadyOpenedWindow = false
-  if(fs.existsSync(settings.getSettingsFilePath()))
-  if(alreadyOpenedWindow = settings.hasSync("library"))
-  openLibWindow(settings.getSync("library"))
-  if(!alreadyOpenedWindow)
-  openMainWindow()
+  if (fs.existsSync(settings.getSettingsFilePath())) {
+    let alreadyOpenedWindow = settings.hasSync('library')
+    if (alreadyOpenedWindow) { openLibWindow(settings.getSync('library')) }
+  }
+  if (!alreadyOpenedWindow) { openMainWindow() }
 }
 
 // This method will be called when Electron has finished
@@ -77,13 +75,13 @@ app.on('activate', function () {
   }
 })
 
-function closeAllWindowsBut(windowToOpen){
-  for(let w of [mainWindow, fileWindow, libWindow]){
-    if(w!=null && w!=windowToOpen) w.close()
+function closeAllWindowsBut (windowToOpen) {
+  for (let w of [mainWindow, fileWindow, libWindow]) {
+    if (w !== null && w !== windowToOpen) w.close()
   }
 }
 
-function openFileWindow(filePath, libPath){
+function openFileWindow (filePath, libPath) {
   filePath = filePath === undefined ? 'examples/teste.xml' : filePath
   let musicFile = fs.readFileSync(filePath, 'utf-8')
   // Create the browser window.
@@ -107,14 +105,13 @@ function openFileWindow(filePath, libPath){
   ipcMain.removeAllListeners('read-file')
   ipcMain.on('read-file', (event, arg) => {
     event.sender.send('read-file-reply', {
-      'filePath' : filePath,
+      'filePath': filePath,
       'fileData': musicFile
     })
   })
-
 }
 
-function openLibWindow(libPath){
+function openLibWindow (libPath) {
   // Create the browser window.
   libWindow = new BrowserWindow({width: 1024, height: 600})
 
@@ -134,17 +131,16 @@ function openLibWindow(libPath){
   })
 }
 
-
 // message events to windows
 // reference examples: https://github.com/electron/electron/blob/master/docs/api/ipc-main.md
-ipcMain.on('open-file', function(ev, arg){
+ipcMain.on('open-file', function (ev, arg) {
   openFileWindow(arg.path, arg.libPath)
 })
 
-ipcMain.on('open-main-window', function(ev, arg){
+ipcMain.on('open-main-window', function (ev, arg) {
   openMainWindow()
 })
 
-ipcMain.on('open-lib', function(ev, arg){
+ipcMain.on('open-lib', function (ev, arg) {
   openLibWindow(arg)
 })

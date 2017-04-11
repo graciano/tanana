@@ -30,5 +30,11 @@ Currently it doesn't work quite well. It just reads a [Music XML](http://userman
  - `gulp watch` to watch sass files
  - `yarn start`to run the applicatio. **Tip: in the screen, cmd+shift+I opens the inspector from chromium**
 
+#### Other warnings and useful links
+
+ - [yarn - npm cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)
+ - [standard js](https://github.com/feross/standard) for using es6.
+  - `npm i -g standard` to run tests and build
+
 ## License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)
