@@ -17,6 +17,7 @@ module.exports = class Player {
   start() {
     this.playing = true
     let that = this
+    //todo refactor this function in other file
     let execute = function(cursor) {
       // bigger possible size is the size of the measure itself
       let time = cursor.iterator.currentMeasure.duration.realValue
@@ -28,6 +29,7 @@ module.exports = class Player {
         }
       }
       that.sleep(time).then( () => {
+        this.playEmitter.emit('next', this.cursor)
         cursor.next()
         if (cursor.iterator.endReached) {
           that.done = true
@@ -82,6 +84,10 @@ module.exports = class Player {
     }
     this.playEmitter.on('play', play)
     if(this.playing) this.play()
+  }
+
+  listenCursor(callback) {
+    this.playEmitter.on('next', callback)
   }
 
 }
