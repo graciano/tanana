@@ -3,7 +3,9 @@ const EventEmitter = require('events')
 class PlayerEmitter extends EventEmitter {}
 
 module.exports = class Player {
-  constructor(options){
+
+  constructor(options) {
+    options = options || {}
     this.sheet = options.sheet
     this.bpm = parseFloat(options.bpm)
     this.playing = false
@@ -16,22 +18,17 @@ module.exports = class Player {
     this.playing = true
     let that = this
     let execute = function(cursor) {
-      console.log(cursor.iterator)
-      console.log(cursor)
       // bigger possible size is the size of the measure itself
       let time = cursor.iterator.currentMeasure.duration.realValue
+      //now get the smallest duration possible to iretate to next element
       for (let voice of cursor.iterator.currentVoiceEntries) {
         for (let note of voice.notes) {
-          let noteLenght = note.lenght.realValue
+          let noteLenght = note.length.realValue
           time = time > noteLenght ? noteLenght : time
         }
       }
       that.sleep(time).then( () => {
         cursor.next()
-        console.log('note')
-        console.log(time)
-        console.log(cursor.iterator.currentVoiceEntries)
-        console.log('---------end note---------')
         if (cursor.iterator.endReached) {
           that.done = true
           that.playing = false
@@ -59,14 +56,13 @@ module.exports = class Player {
   sleep(beats) {
     let ms = 1000 * beats * (this.bpm / 60)
     ms = parseInt(ms)
-    console.log("will sleep "+ms+" ms.")
     let that = this
     return new Promise(resolve => {
       that.resolvePlayPromise(resolve, ms)
     })
   }
 
-  toggle(){
+  toggle() {
     if (this.playing) {
       this.pause()
     } else {
