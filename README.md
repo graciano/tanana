@@ -1,7 +1,7 @@
 Tananã
 ======
 
-> Software to learn/practice music scores. Because music software needs better UX. Specially for students. (It's pronouced like "*tah-nah-naan*")
+> Software to learn/practice music scores. Because music software needs better UX. Specially for students. (For english speakers, it's pronouced like "*tah-nah-naan*")
 
 ![https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true](https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true)
 
@@ -32,9 +32,14 @@ Currently it doesn't work quite well. It just reads a [Music XML](http://userman
 
 #### Other warnings and useful links
 
- - [yarn - npm cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)
- - [standard js](https://github.com/feross/standard) for using es6.
-  - `npm i -g standard` to run tests and build
+  - Some of the scores in the example directory aren't working because the software is not stable **:(**
+    - Go testing more of them to be sure it's working or not in your machine **;)**
+  - Build is not working yet, more info in issue [#9](https://github.com/graciano/tanana/issues/9)
+  - [yarn/npm cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)
+  - [standard js](https://github.com/feross/standard) for using es6.
+    - `npm i -g standard` to run tests with `yarn test` and build
+  - [git flow](https://github.com/nvie/gitflow) the branch pattern of this project
+    - [git flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
 
 ## License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)
