@@ -3,8 +3,7 @@ const EventEmitter = require('events')
 class PlayerEmitter extends EventEmitter {}
 
 module.exports = class Player {
-
-  constructor(options) {
+  constructor (options) {
     options = options || {}
     this.sheet = options.sheet
     this.bpm = this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM
@@ -28,7 +27,7 @@ module.exports = class Player {
           time = time > noteLength ? noteLength : time
         }
       }
-      that.sleep(time).then( () => {
+      that.sleep(time).then(() => {
         that.playEmitter.emit('next', cursor)
         cursor.next()
         if (cursor.iterator.endReached) {
@@ -89,5 +88,4 @@ module.exports = class Player {
   listenCursor (callback) {
     this.playEmitter.on('next', callback)
   }
-
 }
