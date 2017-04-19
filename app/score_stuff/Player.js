@@ -7,7 +7,7 @@ module.exports = class Player {
   constructor(options) {
     options = options || {}
     this.sheet = options.sheet
-    this.bpm = parseFloat(this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM)
+    this.bpm = this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM
     this.playing = false
     this.done = false
     this.playEmitter = new PlayerEmitter()
