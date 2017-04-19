@@ -7,7 +7,7 @@ module.exports = class Player {
   constructor(options) {
     options = options || {}
     this.sheet = options.sheet
-    this.bpm = parseFloat(options.bpm)
+    this.bpm = this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM
     this.playing = false
     this.done = false
     this.playEmitter = new PlayerEmitter()
@@ -24,12 +24,12 @@ module.exports = class Player {
       //now get the smallest duration possible to iretate to next element
       for (let voice of cursor.iterator.currentVoiceEntries) {
         for (let note of voice.notes) {
-          let noteLenght = note.length.realValue
-          time = time > noteLenght ? noteLenght : time
+          let noteLength = note.length.realValue
+          time = time > noteLength ? noteLength : time
         }
       }
       that.sleep(time).then( () => {
-        this.playEmitter.emit('next', this.cursor)
+        that.playEmitter.emit('next', cursor)
         cursor.next()
         if (cursor.iterator.endReached) {
           that.done = true

@@ -29,7 +29,6 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
 
     //creating player and adding it's listeners on buttons
     let player = new Player({
-      'bpm': 120,
       'sheet': sheet
     })
     console.log(player)
