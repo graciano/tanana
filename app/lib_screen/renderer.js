@@ -1,6 +1,5 @@
-const fs = require('fs'),
-readdir = require('recursive-readdir'),
-settings = require('electron-settings')
+const readdir = require('recursive-readdir')
+const settings = require('electron-settings')
 const {dialog} = require('electron').remote
 const {ipcRenderer} = require('electron')
 
@@ -10,23 +9,26 @@ let buttonOpenSelected = document.getElementById('open-selected')
 
 const MUSIC_XML_FORMATS = ['xml', 'XML']
 
-
 let selectFileElem = document.getElementById('file-navigator')
 let libPath
 
-function loadLib(path){
+function loadLib (path) {
   libPath = path
-  //cleaning element first
+  // cleaning element first
   while (selectFileElem.firstChild) {
     selectFileElem.removeChild(selectFileElem.firstChild)
   }
   let countFiles = 0
   readdir(path, [], function (err, files) {
-    if(files.length){
+    if (err) {
+      console.log(err)
+      dialog.showErrorBox('Tananã - erro', err.message)
+    }
+    if (files.length) {
       for (let i = files.length - 1; i >= 0; i--) {
         let file = files[i]
         let fileFormat = file.split('.').pop().toLowerCase()
-        if (MUSIC_XML_FORMATS.indexOf(fileFormat) != -1) {
+        if (MUSIC_XML_FORMATS.indexOf(fileFormat) !== -1) {
           countFiles++
           let option = document.createElement('option')
           option.value = file
@@ -37,15 +39,14 @@ function loadLib(path){
           selectFileElem.appendChild(option)
         }
       }
-      if(countFiles>0){
+      if (countFiles > 0) {
         selectFileElem.size = countFiles
         selectFileElem.disabled = false
-        settings.setSync("library", libPath)
-      }
-      else{
+        settings.setSync('library', libPath)
+      } else {
         dialog.showMessageBox({
-          "title":"Tananã - Aviso",
-          "message": "Nenhum arquivo encontrado!"
+          'title': 'Tananã - Aviso',
+          'message': 'Nenhum arquivo encontrado!'
         })
         selectFileElem.disabled = true
       }
@@ -53,38 +54,38 @@ function loadLib(path){
   })
 }
 
-function openFile(file){
+function openFile (file) {
   ipcRenderer.send('open-file', {
     'path': file,
     'libPath': libPath
   })
 }
 
-function openSelectedFile(){
+function openSelectedFile () {
   let selectedFiles = selectFileElem.selectedOptions
   if (selectedFiles.length === 0) {
     dialog.showMessageBox({
-      "title":"Tananã - Aviso",
-      "message": "Nenhum arquivo foi selecionado!"
+      'title': 'Tananã - Aviso',
+      'message': 'Nenhum arquivo foi selecionado!'
     })
   } else openFile(selectedFiles[0].value)
 }
 
 selectFileElem.addEventListener('keyup', (ev) => {
-  //if it's the enter key, open the selected file
-  if(ev.keyCode === 13) openSelectedFile()
+  // if it's the enter key, open the selected file
+  if (ev.keyCode === 13) openSelectedFile()
   else return false
 })
 
 buttonFile.addEventListener('click', (ev) => {
-  file = dialog.showOpenDialog({properties: ['openFile']})[0]
+  let file = dialog.showOpenDialog({properties: ['openFile']})[0]
   openFile(file)
 })
 
 buttonOpenSelected.addEventListener('click', openSelectedFile)
 
 buttonlibrary.addEventListener('click', (ev) => {
-  libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
+  let libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
   loadLib(libPath)
 })
 

@@ -7,6 +7,7 @@
     "start": "electron .",
     "pack": "build --dir",
     "dist": "build",
+    "test": "standard",
     "dist-windows": "build -w"
   },
   "repository": "https://github.com/graciano/tanana",
@@ -16,13 +17,15 @@
   "author": "Matheus Graciano <graciano.dev@gmail.com>",
   "license": "BSD-4-Clause",
   "devDependencies": {
+    "breakpoint-sass": "^2.7.1",
     "electron": "1.4.1",
     "electron-builder": "^10.8.1",
+    "grunt": "^1.0.1",
     "gulp": "^3.9.1",
-    "gulp-sass": "^3.0.0"
+    "gulp-sass": "^3.0.0",
+    "standard": "^10.0.1"
   },
   "dependencies": {
-    "breakpoint-sass": "^2.7.1",
     "electron-settings": "^2.2.2",
     "opensheetmusicdisplay": "^0.1.0",
     "recursive-readdir": "^2.1.0",

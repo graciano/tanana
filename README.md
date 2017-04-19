@@ -1,9 +1,10 @@
 Tananã
 ======
 
+> Software to learn/practice music scores. Because music software needs better UX. Specially for students. (For english speakers, it's pronouced like "*tah-nah-naan*")
+
 ![https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true](https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true)
 
-> Software to learn/practice music scores. Because music software needs better UX. Specially for students. (For english speakers, it's pronouced like "*tah-nah-naan*")
 
 ![print](https://i.imgur.com/FYmVeXm.png?2)
 

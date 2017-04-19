@@ -14,14 +14,14 @@ module.exports = class Player {
     this.sheet.cursor.show()
   }
 
-  start() {
+  start () {
     this.playing = true
     let that = this
-    //todo refactor this function in other file
-    let execute = function(cursor) {
+    // todo refactor this function in other file
+    let execute = function (cursor) {
       // bigger possible size is the size of the measure itself
       let time = cursor.iterator.currentMeasure.duration.realValue
-      //now get the smallest duration possible to iretate to next element
+      // now get the smallest duration possible to iretate to next element
       for (let voice of cursor.iterator.currentVoiceEntries) {
         for (let note of voice.notes) {
           let noteLength = note.length.realValue
@@ -42,20 +42,20 @@ module.exports = class Player {
     execute(this.sheet.cursor)
   }
 
-  play() {
+  play () {
     if (this.done) return false
     this.playing = true
     this.playEmitter.emit('play')
     return true
   }
 
-  pause() {
+  pause () {
     if (this.done) return false
     this.playing = false
     return true
   }
 
-  sleep(beats) {
+  sleep (beats) {
     let ms = 1000 * beats * (this.bpm / 60)
     ms = parseInt(ms)
     let that = this
@@ -64,7 +64,7 @@ module.exports = class Player {
     })
   }
 
-  toggle() {
+  toggle () {
     if (this.playing) {
       this.pause()
     } else {
@@ -72,7 +72,7 @@ module.exports = class Player {
     }
   }
 
-  resolvePlayPromise(resolve, ms) {
+  resolvePlayPromise (resolve, ms) {
     let that = this
     let play = () => {
       setTimeout(() => {
@@ -83,10 +83,10 @@ module.exports = class Player {
       }, ms)
     }
     this.playEmitter.on('play', play)
-    if(this.playing) this.play()
+    if (this.playing) this.play()
   }
 
-  listenCursor(callback) {
+  listenCursor (callback) {
     this.playEmitter.on('next', callback)
   }
 
