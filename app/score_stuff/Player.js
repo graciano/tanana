@@ -7,6 +7,7 @@ module.exports = class Player {
     options = options || {}
     this.sheet = options.sheet
     this.bpm = this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM
+    this.started = false
     this.playing = false
     this.done = false
     this.playEmitter = new PlayerEmitter()
@@ -14,6 +15,10 @@ module.exports = class Player {
   }
 
   start () {
+    if (this.started) {
+      throw new Error('Cannot start Player already started.')
+    }
+    this.started = true
     this.playing = true
     let that = this
     // todo refactor this function in other file
@@ -42,6 +47,10 @@ module.exports = class Player {
   }
 
   play () {
+    if (!this.started) {
+      this.start()
+      return true
+    }
     if (this.done) return false
     this.playing = true
     this.playEmitter.emit('play')

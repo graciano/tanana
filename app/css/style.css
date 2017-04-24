@@ -90,16 +90,46 @@ button.back-button {
   color: #fff;
   font-size: 2em;
   height: 1.6em;
-  margin-left: .5em;
+  margin: 0 .5em 0 .5em;
   position: fixed;
   width: 1.6em;
-  z-index: 5; }
+  z-index: 1; }
   button.back-button:hover {
     background: #E57373; }
 
 #main-score {
   min-height: 50vh;
   margin: 0 auto; }
+
+.control-buttons {
+  border-radius: 3px;
+  background: linear-gradient(rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.8) 100%);
+  backdrop-filter: blur(20px);
+  left: 50%;
+  position: fixed;
+  top: 0;
+  transform: translateX(-50%);
+  user-select: none;
+  z-index: 2; }
+  .control-buttons button {
+    font-size: 3em;
+    transition: ease 400ms color;
+    position: relative;
+    z-index: 3; }
+    .control-buttons button :hover {
+      color: #4CAF50;
+      cursor: pointer;
+      transition: ease 400ms color; }
+
+.blur-bg {
+  background: linear-gradient(rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.8) 100%);
+  bottom: 0;
+  left: 0;
+  filter: blur(20px);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1; }
 
 .file-header h1 {
   text-align: center; }

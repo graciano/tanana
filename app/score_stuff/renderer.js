@@ -4,6 +4,7 @@ const {ipcRenderer} = require('electron')
 const {dialog} = require('electron').remote
 
 let libPath
+let player
 ipcRenderer.send('read-file')
 ipcRenderer.send('back-to-lib-window')
 
@@ -24,27 +25,11 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
     // removing loading warning
     document.querySelector('h1').remove()
 
-    // creating player and adding it's listeners on buttons
-    let player = new Player({
+    // updating player and adding it's listeners on buttons
+    player = new Player({
       'sheet': sheet
     })
     console.log(player)
-    player.start()
-
-    document.addEventListener('keyup', ev => {
-      // space bar
-      if (ev.keyCode === 32) {
-        player.toggle()
-      }
-      return false
-    })
-
-    // preventing spacebar from scrolling
-    document.addEventListener('keydown', ev => {
-      if (ev.keyCode === 32) {
-        ev.preventDefault()
-      }
-    })
   } catch (err) {
     console.log(err)
     dialog.showErrorBox('Tananã - erro', err.message)
@@ -68,4 +53,22 @@ window.addEventListener('keyup', (ev) => {
   // escape key
   if (ev.keyCode === 27) goBack()
   else return false
+})
+
+let playButton = document.querySelector('#play-button')
+playButton.addEventListener('click', () => { player.toggle() })
+
+// preventing spacebar from scrolling
+document.addEventListener('keydown', ev => {
+  if (ev.keyCode === 32) {
+    ev.preventDefault()
+  }
+})
+
+document.addEventListener('keyup', ev => {
+  // space bar
+  if (ev.keyCode === 32) {
+    player.toggle()
+  }
+  return false
 })

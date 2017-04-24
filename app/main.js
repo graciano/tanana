@@ -13,6 +13,11 @@ const settings = require('electron-settings')
 
 const url = require('url')
 const fs = require('fs')
+const windowProps = {
+  height: 600,
+  width: 1024,
+  webPreferences: { experimentalFeatures: true }
+}
 
 // Keep a global reference of the windows objects, if you don't, the windows will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,7 +27,7 @@ let libWindow = null
 
 function openMainWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 600})
+  mainWindow = new BrowserWindow(windowProps)
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -85,7 +90,7 @@ function openFileWindow (filePath, libPath) {
   filePath = filePath === undefined ? 'examples/teste.xml' : filePath
   let musicFile = fs.readFileSync(filePath, 'utf-8')
   // Create the browser window.
-  fileWindow = new BrowserWindow({width: 1024, height: 600})
+  fileWindow = new BrowserWindow(windowProps)
 
   fileWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'score_stuff/index.html'),
@@ -113,7 +118,7 @@ function openFileWindow (filePath, libPath) {
 
 function openLibWindow (libPath) {
   // Create the browser window.
-  libWindow = new BrowserWindow({width: 1024, height: 600})
+  libWindow = new BrowserWindow(windowProps)
 
   libWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'lib_screen/index.html'),
