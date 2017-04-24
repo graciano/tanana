@@ -55,8 +55,19 @@ window.addEventListener('keyup', (ev) => {
   else return false
 })
 
+let playerStarted = false
+//this still can have some concurrence problems. todo fix later
+function togglePlay() {
+  if (playerStarted) {
+    player.toggle()
+  } else {
+    player.start()
+    playerStarted = true
+  }
+}
+
 let playButton = document.querySelector('#play-button')
-playButton.addEventListener('click', () => { player.toggle() })
+playButton.addEventListener('click', togglePlay)
 
 // preventing spacebar from scrolling
 document.addEventListener('keydown', ev => {
@@ -68,7 +79,7 @@ document.addEventListener('keydown', ev => {
 document.addEventListener('keyup', ev => {
   // space bar
   if (ev.keyCode === 32) {
-    player.toggle()
+    togglePlay()
   }
   return false
 })
