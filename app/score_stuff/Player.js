@@ -1,4 +1,5 @@
 const EventEmitter = require('events')
+const playerStepRecursive = require('./playerStepRecursive')
 
 class PlayerEmitter extends EventEmitter {}
 
@@ -15,30 +16,7 @@ module.exports = class Player {
 
   start () {
     this.playing = true
-    let that = this
-    // todo refactor this function in other file
-    let execute = function (cursor) {
-      // bigger possible size is the size of the measure itself
-      let time = cursor.iterator.currentMeasure.duration.realValue
-      // now get the smallest duration possible to iretate to next element
-      for (let voice of cursor.iterator.currentVoiceEntries) {
-        for (let note of voice.notes) {
-          let noteLength = note.length.realValue
-          time = time > noteLength ? noteLength : time
-        }
-      }
-      that.sleep(time).then(() => {
-        that.playEmitter.emit('next', cursor)
-        cursor.next()
-        if (cursor.iterator.endReached) {
-          that.done = true
-          that.playing = false
-        } else {
-          execute(cursor)
-        }
-      })
-    }
-    execute(this.sheet.cursor)
+    playerStepRecursive(this)
   }
 
   play () {

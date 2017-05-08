@@ -4,7 +4,7 @@
   "description": "Software para aprendizado de partituras musicais.",
   "main": "app/main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "gulp sass && electron .",
     "pack": "build --dir",
     "dist": "build",
     "test": "standard",
