@@ -38,8 +38,6 @@ Currently it doesn't work quite well. It just reads a [Music XML](https://userma
   - [yarn/npm cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)
   - [standard js](https://github.com/feross/standard) for using es6.
     - `npm i -g standard` to run tests with `yarn test` and build
-  - [git flow](https://github.com/nvie/gitflow) the branch pattern of this project
-    - [git flow cheatsheet](https://danielkummer.github.io/git-flow-cheatsheet/)
 
 ## License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)
