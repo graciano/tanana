@@ -1,5 +1,8 @@
 dist/
 tanana.zip
+# atom ctags
+
+.tags*
 
 # Created by https://www.gitignore.io/api/windows,osx,sublimetext,node,linux
 
