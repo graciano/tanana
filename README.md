@@ -18,7 +18,7 @@ Currently it doesn't work quite well. It just reads a [Music XML](https://userma
 
 ## This project is using:
 
- - [yarn](https://code.facebook.com/posts/1840075619545360) (*if you know your npm, this will be easy*)
+ - [npm](https://www.npmjs.com/)
  - [gulp](http://gulpjs.com/), install with `npm i -g gulp`
  - [electron](https://electron.atom.io), install with `npm i -g electron`
  - [Open Sheet Music Display](http://opensheetmusicdisplay.org), that reads a music xml and uses [VexFlow](https://github.com/0xfe/vexflow) *to create an svg music score*.
@@ -26,18 +26,17 @@ Currently it doesn't work quite well. It just reads a [Music XML](https://userma
 ### Yeah, cool, but after I clone the repo, what do I do?
 
  - `git clone git@github.com:graciano/tanana.git && cd tanana`
- - `yarn` # to install dependencies
+ - `npm install` # to install dependencies
  - `gulp watch` to watch sass files
- - `yarn start`to run the applicatio. **Tip: in the screen, cmd+shift+I opens the inspector from chromium**
+ - `npm run start`to run the applicatio. **Tip: in the screen, cmd+shift+I opens the inspector from chromium**
 
 #### Other warnings and useful links
 
   - Some of the scores in the example directory aren't working because the software is not stable **:(**
     - Go testing more of them to be sure it's working or not in your machine **;)**
   - Build is not working yet, more info in issue [#9](https://github.com/graciano/tanana/issues/9)
-  - [yarn/npm cheatsheet](https://shift.infinite.red/npm-vs-yarn-cheat-sheet-8755b092e5cc)
   - [standard js](https://github.com/feross/standard) for using es6.
-    - `npm i -g standard` to run tests with `yarn test` and build
+    - `npm i -g standard` to run tests with `npm run test` and build
 
 ## License
 BSD-4-Clause License, aka the first license of BSD. (It's small and in the file [LICENSE.md](LICENSE.md), read it and be happy)

@@ -18,8 +18,8 @@
   "license": "BSD-4-Clause",
   "devDependencies": {
     "breakpoint-sass": "^2.7.1",
-    "electron": "1.6.6",
-    "electron-builder": "^10.8.1",
+    "electron": "1.8.1",
+    "electron-builder": "^19.55.2",
     "grunt": "^1.0.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.0.0",
