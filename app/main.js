@@ -50,12 +50,7 @@ function openMainWindow () {
 }
 
 function openApp () {
-  let alreadyOpenedWindow = false
-  if (fs.existsSync(settings.getSettingsFilePath())) {
-    let alreadyOpenedWindow = settings.hasSync('library')
-    if (alreadyOpenedWindow) { openLibWindow(settings.getSync('library')) }
-  }
-  if (!alreadyOpenedWindow) { openMainWindow() }
+  openMainWindow()
 }
 
 // This method will be called when Electron has finished
