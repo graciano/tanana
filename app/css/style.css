@@ -1,17 +1,18 @@
-html, body {
+html,
+body {
   font-family: 'Courier', monospace;
   margin: 0; }
-  html *, body * {
+  html *,
+  body * {
     max-width: 100%; }
 
 button {
   background: none;
   border: none;
   cursor: pointer;
-  -webkit-transition: background ease 500ms; }
-
-button:hover {
-  -webkit-transition: background ease 500ms; }
+  transition: background ease 500ms; }
+  button:hover {
+    transition: background ease 500ms; }
 
 footer, .presentation, .initial-options {
   text-align: center;
@@ -21,7 +22,7 @@ footer, .presentation, .initial-options {
   padding-right: 1em; }
 
 footer {
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 0 !important; }
 
 footer, .presentation, .initial-options {
@@ -38,7 +39,7 @@ footer, .presentation, .initial-options {
 .initial-options {
   box-sizing: border-box;
   display: flex;
-  font-size: .9em;
+  font-size: 0.9em;
   flex-wrap: wrap; }
   .initial-options > * {
     box-sizing: border-box;
@@ -53,6 +54,16 @@ footer, .presentation, .initial-options {
       border-left: 1px solid #000; } }
   .initial-options p {
     text-align: left; }
+  .initial-options button {
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 1.3em;
+    font-weight: bold;
+    height: 4em;
+    margin: 0.25em;
+    padding: 0.5em;
+    text-align: center;
+    width: 12em; }
   .initial-options .first-example > button {
     background: #EF9A9A;
     border: solid #F44336 2px;
@@ -65,16 +76,6 @@ footer, .presentation, .initial-options {
     color: #283593; }
     .initial-options .library > button:hover {
       background: #7986CB; }
-  .initial-options button {
-    border-radius: 3px;
-    font-family: inherit;
-    font-size: 1.3em;
-    font-weight: bold;
-    height: 4em;
-    margin: 0.25em;
-    padding: .5em;
-    text-align: center;
-    width: 12em; }
 
 footer, .presentation, .initial-options {
   text-align: center;
@@ -90,7 +91,7 @@ button.back-button {
   color: #fff;
   font-size: 2em;
   height: 1.6em;
-  margin: 0 .5em 0 .5em;
+  margin: 0 0.5em 0 0.5em;
   position: fixed;
   width: 1.6em;
   z-index: 1; }
@@ -144,7 +145,7 @@ footer, .presentation, .initial-options {
 .lib-header h1 {
   font-size: 3em;
   text-align: center;
-  margin-top: .5em; }
+  margin-top: 0.5em; }
 
 .lib-wrapper {
   box-sizing: border-box;
@@ -165,7 +166,7 @@ footer, .presentation, .initial-options {
     overflow-y: auto;
     width: 100%; }
     .lib-wrapper .file-navigator option {
-      padding: .3em; }
+      padding: 0.3em; }
   .lib-wrapper .buttons {
     display: flex;
     flex-direction: column;

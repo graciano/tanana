@@ -7,7 +7,7 @@
     "start": "gulp sass && electron .",
     "pack": "build --dir",
     "dist": "build",
-    "lint": "eslint app",
+    "lint": "eslint app && stylelint app/sass/",
     "test": "standard",
     "dist-windows": "build -w"
   },
@@ -36,6 +36,10 @@
     "electron-settings": "^3.2.0",
     "opensheetmusicdisplay": "^0.2.1",
     "recursive-readdir": "^2.1.0",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-config-standard-scss": "^1.0.1",
+    "stylelint-scss": "^3.5.3",
     "xml2js": "^0.4.17"
   },
   "build": {

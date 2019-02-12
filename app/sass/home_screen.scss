@@ -3,58 +3,67 @@
 @import "colors";
 @import "small_block";
 
-.presentation{
-    @extend %small-block;
-    & > h1 {
-        font-size: 3em;
-        margin-top: 0;
-    }
+.presentation {
+  @extend %small-block;
+
+  & > h1 {
+    font-size: 3em;
+    margin-top: 0;
+  }
 }
 
-.initial-options{
-    @extend %small-block;
+.initial-options {
+  @extend %small-block;
+
+  box-sizing: border-box;
+  display: flex;
+  font-size: 0.9em;
+  flex-wrap: wrap;
+
+  & > * {
     box-sizing: border-box;
-    display: flex;
-    font-size: .9em;
-    flex-wrap: wrap;
-    & > * {
-        box-sizing: border-box;
-        text-align: center;
-        padding: 1em;
-        width: 100%;
-        @include breakpoint($not-phone){
-            width: 50%;
-        }
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+
+    @include breakpoint($not-phone) {
+      width: 50%;
     }
-    @include breakpoint($not-phone){
-        & > *:nth-child(2){
-            border-left: 1px solid #000;
-        }
+  }
+
+  @include breakpoint($not-phone) {
+    & > *:nth-child(2) {
+      border-left: 1px solid #000;
     }
-    p{
-        text-align: left;
-    }
-    .first-example > button{
-        background: red(2);
-        border: solid red() 2px;
-        color: red(8);
-        &:hover{ background: red(3); }
-    }
-    .library > button{
-        background: indigo(2);
-        border: solid indigo() 2px;
-        color: indigo(8);
-        &:hover{ background: indigo(3); }
-    }
-    button {
-        border-radius: 3px;
-        font-family: inherit;
-        font-size: 1.3em;
-        font-weight: bold;
-        height: 4em;
-        margin: 0.25em;
-        padding: .5em;
-        text-align: center;
-        width: 12em;
-    }
+  }
+
+  p {
+    text-align: left;
+  }
+
+  button {
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: 1.3em;
+    font-weight: bold;
+    height: 4em;
+    margin: 0.25em;
+    padding: 0.5em;
+    text-align: center;
+    width: 12em;
+  }
+
+  .first-example-button {
+    background: red(2);
+    border: solid red() 2px;
+    color: red(8);
+    &:hover { background: red(3); }
+  }
+
+  .library-button {
+    background: indigo(2);
+    border: solid indigo() 2px;
+    color: indigo(8);
+    &:hover { background: indigo(3); }
+  }
 }

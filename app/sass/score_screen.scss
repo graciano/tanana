@@ -4,23 +4,27 @@
 @import "small_block";
 
 button.back-button {
-    $size: 1.6em;
-    background: red(2);
-    border: solid red() 2px;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 2em;
-    height: $size;
-    margin: 0 .5em 0 .5em;
-    position: fixed;
-    width: $size;
-    z-index: 1;
-    &:hover{ background: red(3); }
+  $size: 1.6em;
+
+  background: red(2);
+  border: solid red() 2px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2em;
+  height: $size;
+  margin: 0 0.5em 0 0.5em;
+  position: fixed;
+  width: $size;
+  z-index: 1;
+
+  &:hover {
+    background: red(3);
+  }
 }
 
 #main-score {
-    min-height: 50vh;
-    margin: 0 auto;
+  min-height: 50vh;
+  margin: 0 auto;
 }
 
 .control-buttons {
@@ -33,11 +37,13 @@ button.back-button {
   transform: translateX(-50%);
   user-select: none;
   z-index: 2;
+
   button {
     font-size: 3em;
     transition: ease 400ms color;
     position: relative;
     z-index: 3;
+
     :hover {
       color: green();
       cursor: pointer;
@@ -58,5 +64,5 @@ button.back-button {
 }
 
 .file-header h1 {
-    text-align: center;
+  text-align: center;
 }

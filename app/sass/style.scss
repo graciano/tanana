@@ -1,27 +1,33 @@
-html, body{
-    font-family: 'Courier', monospace;
-    margin: 0;
-    *{
-        max-width: 100%;
-    }
+html,
+body {
+  font-family: 'Courier', monospace;
+  margin: 0;
+
+  * {
+    max-width: 100%;
+  }
 }
+
 button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    -webkit-transition: background ease 500ms;
-}
-button:hover{
-    -webkit-transition: background ease 500ms;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background ease 500ms;
+
+  &:hover {
+    transition: background ease 500ms;
+  }
 }
 
 @import "small_block";
 
-footer{
-    @extend %small-block;
-    font-size: .8em;
-    padding: 0 !important;
+footer {
+  @extend %small-block;
+
+  font-size: 0.8em;
+  padding: 0 !important;
 }
+
 @import "home_screen";
 @import "score_screen";
 @import "lib_screen";
