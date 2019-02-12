@@ -44,7 +44,8 @@
       "category": "public.app-category.education"
     },
     "dmg": {},
-    "win": "target": [
+    "win": {
+      "target": [
         {
           "target": "nsis",
           "arch": [
