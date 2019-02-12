@@ -44,7 +44,15 @@
       "category": "public.app-category.education"
     },
     "dmg": {},
-    "win": {
+    "win": "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
       "iconUrl": "https://cdn.pixabay.com/photo/2015/12/09/22/09/music-1085655_960_720.png"
     },
     "files": [
