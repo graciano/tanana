@@ -1,22 +1,35 @@
-version: 0.1.0-{build}
+version: 0.2.0-{build}
 
-platform:
-  - x64
+environment:
+  matrix:
+    - platform: x64
 
 cache:
   - node_modules
   - '%APPDATA%\npm-cache'
   - '%USERPROFILE%\.electron'
+branches:
+  only:
+    - master
+
+image: Visual Studio 2015
 
 init:
-  - git config --global core.autocrlf input
 
 install:
   - ps: Install-Product node 7 x64
-  - yarn install
-  - yarn add electron-builder@next --dev # force install next version to test electron-builder
+  - set CI=true
+  - npm i -g electron
 
-build_script:
-  - yarn run dist-windows
+build: off
 
-test: off
+shallow_clone: true
+
+test_script:
+  - node --version
+  - npm --version
+  - npm run lint
+  - npm test
+
+on_success:
+- npm run pack
