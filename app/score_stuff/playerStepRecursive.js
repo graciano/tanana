@@ -1,5 +1,5 @@
-let playerStepRecursive = function (player) {
-  let cursor = player.sheet.cursor
+const playerStepRecursive = (player) => {
+  const cursor = player.sheet.cursor
   // bigger possible size is the size of the measure itself
   let time = cursor.iterator.currentMeasure.duration.realValue
   // now get the smallest duration possible to iretate to next element

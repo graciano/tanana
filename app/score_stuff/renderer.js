@@ -1,7 +1,7 @@
 let OSMD = require('opensheetmusicdisplay').OSMD
 let Player = require('./Player.js')
-const {ipcRenderer} = require('electron')
-const {dialog} = require('electron').remote
+const { ipcRenderer } = require('electron')
+const { dialog } = require('electron').remote
 
 let libPath
 let player
@@ -12,9 +12,7 @@ ipcRenderer.on('back-to-lib-window-reply', (event, arg) => {
   libPath = arg
 })
 
-ipcRenderer.on('read-file-reply', (event, arg) => {
-  let fileData = arg['fileData']
-
+ipcRenderer.on('read-file-reply', (event, { fileData }) => {
   try {
     // render music sheet
     let scoreElem = document.querySelector('#main-score')
@@ -56,7 +54,7 @@ ipcRenderer.on('read-file-reply', (event, arg) => {
   document.title = title
 })
 
-let backButton = document.querySelector('#back-button')
+const backButton = document.querySelector('#back-button')
 
 function goBack () {
   if (libPath) ipcRenderer.send('open-lib', libPath)

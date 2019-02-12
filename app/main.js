@@ -3,13 +3,12 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
-const {ipcMain} = require('electron')
+const { ipcMain } = require('electron')
 const path = require('path')
 module.paths.push(path.resolve('node_modules'))
 module.paths.push(path.resolve('../node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app', 'node_modules'))
 module.paths.push(path.resolve(__dirname, '..', '..', '..', '..', 'resources', 'app.asar', 'node_modules'))
-const settings = require('electron-settings')
 
 const url = require('url')
 const fs = require('fs')

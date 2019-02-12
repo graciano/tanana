@@ -1,15 +1,15 @@
 const readdir = require('recursive-readdir')
 const settings = require('electron-settings')
-const {dialog} = require('electron').remote
-const {ipcRenderer} = require('electron')
+const { dialog } = require('electron').remote
+const { ipcRenderer } = require('electron')
 
-let buttonlibrary = document.getElementById('change-lib')
-let buttonFile = document.getElementById('open-file')
-let buttonOpenSelected = document.getElementById('open-selected')
+const buttonlibrary = document.getElementById('change-lib')
+const buttonFile = document.getElementById('open-file')
+const buttonOpenSelected = document.getElementById('open-selected')
 
 const MUSIC_XML_FORMATS = ['xml', 'XML']
 
-let selectFileElem = document.getElementById('file-navigator')
+const selectFileElem = document.getElementById('file-navigator')
 let libPath
 
 function loadLib (path) {
@@ -78,14 +78,14 @@ selectFileElem.addEventListener('keyup', (ev) => {
 })
 
 buttonFile.addEventListener('click', (ev) => {
-  let file = dialog.showOpenDialog({properties: ['openFile']})[0]
+  const file = dialog.showOpenDialog({ properties: ['openFile'] })[0]
   openFile(file)
 })
 
 buttonOpenSelected.addEventListener('click', openSelectedFile)
 
 buttonlibrary.addEventListener('click', (ev) => {
-  let libPath = dialog.showOpenDialog({properties: ['openDirectory']})[0]
+  const libPath = dialog.showOpenDialog({ properties: ['openDirectory'] })[0]
   loadLib(libPath)
 })
 
