@@ -21,6 +21,7 @@ install:
   - set CI=true
   - npm i -g electron
   - npm i -g eslint
+  - npm i
 
 build: off
 
