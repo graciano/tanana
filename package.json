@@ -65,7 +65,6 @@
     "extraResources": [
       "../examples/**/*.xml"
     ],
-    "license": "LICENSE.md",
-    "language": "pt-BR"
+    "license": "LICENSE.md"
   }
 }
