@@ -64,7 +64,6 @@
     ],
     "extraResources": [
       "../examples/**/*.xml"
-    ],
-    "license": "LICENSE.md"
+    ]
   }
 }
