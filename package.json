@@ -47,6 +47,20 @@
     "mac": {
       "category": "public.app-category.education"
     },
+    "linux": {
+      "icon": "https://cdn.pixabay.com/photo/2015/12/09/22/09/music-1085655_960_720.png",
+      "target": [
+        {
+          "target": "deb",
+          "arch": [ "x64" ]
+        },
+        {
+          "target": "AppImage",
+          "arch": [ "x64" ]
+        }
+      ],
+      "category": "Utility"
+    },
     "dmg": {},
     "win": {
       "icon": "https://cdn.pixabay.com/photo/2015/12/09/22/09/music-1085655_960_720.png",
