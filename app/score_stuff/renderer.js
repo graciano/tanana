@@ -1,5 +1,5 @@
-let OSMD = require('opensheetmusicdisplay').OSMD
-let Player = require('./Player.js')
+const { OpenSheetMusicDisplay } = require('opensheetmusicdisplay')
+const Player = require('./Player.js')
 const { ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
 
@@ -15,8 +15,8 @@ ipcRenderer.on('back-to-lib-window-reply', (event, arg) => {
 ipcRenderer.on('read-file-reply', (event, { fileData }) => {
   try {
     // render music sheet
-    let scoreElem = document.querySelector('#main-score')
-    let sheet = new OSMD(scoreElem)
+    const scoreElem = document.querySelector('#main-score')
+    const sheet = new OpenSheetMusicDisplay(scoreElem)
     sheet.load(fileData, true)
     sheet.render()
 
