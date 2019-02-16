@@ -1,69 +1,49 @@
-const EventEmitter = require('events')
-const playerStepRecursive = require('./playerStepRecursive')
+const { msToSleep } = require('./osmdUtils')
 
-class PlayerEmitter extends EventEmitter {}
+const sleep = async ms => new Promise(resolve => setTimeout(resolve, ms))
 
 module.exports = class Player {
-  constructor (options) {
-    options = options || {}
-    this.sheet = options.sheet
-    this.bpm = this.sheet.sheet.MusicPartManager.MusicSheet.userStartTempoInBPM
+  constructor ({ osmd }) {
+    this.osmd = osmd
     this.playing = false
     this.done = false
-    this.playEmitter = new PlayerEmitter()
-    this.sheet.cursor.show()
   }
 
   start () {
-    this.playing = true
-    playerStepRecursive(this)
+    this.osmd.cursor.show()
+    this.play()
   }
 
   play () {
-    if (this.done) return false
+    if (this.done) return
     this.playing = true
-    this.playEmitter.emit('play')
-    return true
+    this.stepRecursive()
   }
 
   pause () {
-    if (this.done) return false
+    if (this.done) return
     this.playing = false
-    return true
-  }
-
-  sleep (beats) {
-    let ms = 1000 * beats * (this.bpm / 60)
-    ms = parseInt(ms)
-    let that = this
-    return new Promise(resolve => {
-      that.resolvePlayPromise(resolve, ms)
-    })
   }
 
   toggle () {
+    if (this.playing) this.pause()
+    else this.play()
+  }
+
+  end () {
+    this.done = true
+    this.playing = false
+  }
+
+  async stepRecursive () {
+    const { cursor } = this.osmd
+    console.log(`awaiting ${msToSleep(this.osmd)} ms`)
+    console.log(this.osmd)
+    await sleep(msToSleep(this.osmd))
     if (this.playing) {
-      this.pause()
-    } else {
-      this.play()
+      cursor.next()
+      if (cursor.iterator.endReached) this.end()
+      else await this.stepRecursive()
     }
-  }
-
-  resolvePlayPromise (resolve, ms) {
-    let that = this
-    let play = () => {
-      setTimeout(() => {
-        if (that.playing) {
-          that.playEmitter.removeListener('play', play)
-          resolve()
-        }
-      }, ms)
-    }
-    this.playEmitter.on('play', play)
-    if (this.playing) this.play()
-  }
-
-  listenCursor (callback) {
-    this.playEmitter.on('next', callback)
   }
 }

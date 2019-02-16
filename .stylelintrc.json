@@ -1,6 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
-   "plugins": [
+  "plugins": [
     "stylelint-scss"
   ]
 }

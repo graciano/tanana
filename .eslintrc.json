@@ -1,3 +1,12 @@
 {
-    "extends": "standard"
+    "extends": "standard",
+    "rules": {
+      "complexity": [
+        "error",
+        {
+          "max": 5
+        }
+      ]
+    }
+
 }

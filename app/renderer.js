@@ -10,4 +10,4 @@ buttonlibrary.addEventListener('click', () => {
 })
 
 buttonExample.addEventListener('click', () => ipcRenderer
-  .send('open-file', { path: 'examples/teste.xml' }))
+  .send('open-file', { path: 'examples/JosephHaydn_ConcertanteCello.xml' }))

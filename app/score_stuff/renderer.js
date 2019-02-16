@@ -1,7 +1,7 @@
 const { OpenSheetMusicDisplay } = require('opensheetmusicdisplay')
-const Player = require('./Player.js')
 const { ipcRenderer } = require('electron')
 const { dialog } = require('electron').remote
+const Player = require('./Player.js')
 
 let libPath
 let player
@@ -16,17 +16,15 @@ ipcRenderer.on('read-file-reply', (event, { fileData }) => {
   try {
     // render music sheet
     const scoreElem = document.querySelector('#main-score')
-    const sheet = new OpenSheetMusicDisplay(scoreElem)
-    sheet.load(fileData, true)
-    sheet.render()
+    const osmd = new OpenSheetMusicDisplay(scoreElem)
+    osmd.load(fileData, true)
+    osmd.render()
 
     // removing loading warning
     document.querySelector('h1').remove()
 
     // updating player and adding it's listeners on buttons
-    player = new Player({
-      'sheet': sheet
-    })
+    player = new Player({ osmd })
     console.log(player)
     player.start()
 
