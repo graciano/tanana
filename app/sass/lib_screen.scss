@@ -1,6 +1,7 @@
 @import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
 @import "breakpoints";
 @import "colors";
+@import "bg-button";
 @import "small_block";
 
 .lib-header h1 {
@@ -44,8 +45,8 @@
     justify-content: space-between;
 
     button {
-      background-color: indigo(5);
-      border: solid 1px indigo(8);
+      @include bg-button($blue);
+
       border-radius: 3px;
       color: #fff;
       font-family: inherit;
@@ -56,10 +57,6 @@
       padding: 0;
       text-align: center;
       width: 12em;
-
-      &:hover {
-        background-color: indigo(2);
-      }
     }
   }
 }

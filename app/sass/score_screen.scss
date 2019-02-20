@@ -2,12 +2,13 @@
 @import "breakpoints";
 @import "colors";
 @import "small_block";
+@import "bg-button";
 
 button.back-button {
   $size: 1.6em;
 
-  background: red(2);
-  border: solid red() 2px;
+  @include bg-button($blue);
+
   border-radius: 50%;
   color: #fff;
   font-size: 2em;
@@ -16,10 +17,6 @@ button.back-button {
   position: fixed;
   width: $size;
   z-index: 1;
-
-  &:hover {
-    background: red(3);
-  }
 }
 
 #main-score {
@@ -45,7 +42,7 @@ button.back-button {
     z-index: 3;
 
     :hover {
-      color: green();
+      color: $green;
       cursor: pointer;
       transition: ease 400ms color;
     }

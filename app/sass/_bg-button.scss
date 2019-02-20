@@ -1,0 +1,8 @@
+@mixin bg-button($color) {
+  background-color: $color;
+  border: solid 1px darken($color, 20%);
+
+  &:hover {
+    background-color: lighten($color, 10%);
+  }
+}

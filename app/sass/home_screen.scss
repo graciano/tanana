@@ -1,6 +1,7 @@
 @import "../../node_modules/breakpoint-sass/stylesheets/breakpoint";
 @import "breakpoints";
 @import "colors";
+@import "bg-button";
 @import "small_block";
 
 .presentation {
@@ -54,16 +55,10 @@
   }
 
   .first-example-button {
-    background: red(2);
-    border: solid red() 2px;
-    color: red(8);
-    &:hover { background: red(3); }
+    @include bg-button($yellow);
   }
 
   .library-button {
-    background: indigo(2);
-    border: solid indigo() 2px;
-    color: indigo(8);
-    &:hover { background: indigo(3); }
+    @include bg-button($blue);
   }
 }
