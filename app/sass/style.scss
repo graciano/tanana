@@ -1,4 +1,5 @@
 @import "font.scss";
+@import "colors";
 
 html,
 body {
@@ -19,6 +20,12 @@ button {
   &:hover {
     transition: background ease 500ms;
   }
+}
+
+a,
+a:visited,
+a:hover {
+  color: $blue;
 }
 
 @import "small_block";

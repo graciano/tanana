@@ -7,9 +7,34 @@
 .presentation {
   @extend %small-block;
 
-  & > h1 {
+  h1 {
+    color: $blue;
     font-size: 3em;
-    margin-top: 0;
+    margin: 0.25em;
+  }
+}
+
+.rainbow-notes {
+  margin: 0;
+
+  span:nth-of-type(1) {
+    color: $purple;
+  }
+
+  span:nth-of-type(2) {
+    color: $red;
+  }
+
+  span:nth-of-type(3) {
+    color: $yellow;
+  }
+
+  span:nth-of-type(4) {
+    color: $blue;
+  }
+
+  span:nth-of-type(5) {
+    color: $green;
   }
 }
 
@@ -48,10 +73,10 @@
     font-size: 1.3em;
     font-weight: bold;
     height: 4em;
-    margin: 0.25em;
+    margin: 0;
     padding: 0.5em;
     text-align: center;
-    width: 12em;
+    width: 100%;
   }
 
   .first-example-button {
@@ -60,5 +85,7 @@
 
   .library-button {
     @include bg-button($blue);
+
+    color: #fff;
   }
 }
