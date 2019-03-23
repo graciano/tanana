@@ -5,16 +5,19 @@ const sleep = async ms => new Promise(resolve => setTimeout(resolve, ms))
 module.exports = class Player {
   constructor ({ osmd }) {
     this.osmd = osmd
+    this.started = false
     this.playing = false
     this.done = false
   }
 
   start () {
     this.osmd.cursor.show()
+    this.started = true
     this.play()
   }
 
   play () {
+    if (!this.started) return this.start()
     if (this.done) return
     this.playing = true
     this.stepRecursive()
@@ -33,6 +36,8 @@ module.exports = class Player {
   end () {
     this.done = true
     this.playing = false
+    this.osmd.cursor.reset()
+    this.osmd.cursor.hide()
   }
 
   async stepRecursive () {
