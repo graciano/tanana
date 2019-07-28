@@ -1,6 +1,13 @@
 Tananã
 ======
 
+## Archived all my public repos in support for the embargoed devs
+
+See more [here](https://github.com/1995parham/github-do-not-ban-us)
+
+Migrated this repo to gitlab. Check my profile: https://gitlab.com/wtfgraciano
+
+---
 > Software to learn/practice music scores. Because music software needs better UX. Specially for students. (For english speakers, it's pronouced like "*tah-nah-naan*")
 
 ![https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true](https://ci.appveyor.com/api/projects/status/github/graciano/tanana?svg=true)
